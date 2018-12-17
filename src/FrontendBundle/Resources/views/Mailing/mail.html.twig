@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>{{ asunto }}</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css'>
+</head>
+
+<body style="margin: 0px;text-align:center;color:#333;">
+
+
+<div id="container" style="">
+
+    <div style="background-color: #000; height: 82px; padding: 10px;border-bottom: 4px solid #c52d2f;">
+        <a style="text-decoration: none;" href="{{ direccion_url }}"
+           title="Home">
+            <img src="{{ direccion_url }}/bundles/frontend/images/logo.png">
+        </a>
+    </div>
+
+    <div style="width:100%;/*height:400px;*/">
+        <h1 style="font-family: 'Oswald', sans-serif;font-size: 28px;font-weight: 400;margin-top: 20px;margin-right: auto;margin-bottom: 50px;margin-left: auto;">
+            {{ asunto }}
+        </h1>
+
+        <p style="text-align:left; font-family:'Trebuchet MS', Arial, Helvetica, sans-serif; font-size:14px; margin:20px auto 0 auto; font-weight:100; padding: 0 40px 0 40px;">
+            Estimado sr(a):
+                <span style="font-weight:400;">
+                {{ receptor }}
+                </span>
+        </p>
+
+        <p style="text-align:left; font-family:'Trebuchet MS', Arial, Helvetica, sans-serif; font-size:14px; margin:20px auto 0 auto; font-weight:100; padding: 0 40px 0 40px;">
+            {{ contenido |raw }}
+        </p>
+
+        <p style="text-align:left; font-family:'Trebuchet MS', Arial, Helvetica, sans-serif; font-size:14px; margin:20px auto 0 auto; font-weight:100; padding: 0 40px 0 40px;">
+            Gracias por usar nuestros servicios.<br>
+            Servicio al Cliente<br>
+            Tel 56 9 5413 5354<br>
+            Email: <a href="mailto:contacto@ican.cl" style="text-decoration: none;color:#c52d2f;">contacto@ican.cl</a>
+        </p>
+    </div>
+
+</div>
+<div style="bottom: 0px;padding-top: 10px;padding-bottom: 20px;width: 100%;background-color:transparent;border-top-width: 1px;border-top-style: solid;border-top-color: #c52d2f; font-family:'Trebuchet MS', Arial, Helvetica, sans-serif; margin-top: 50px;">
+    <p style="display: inline;vertical-align:top; margin-top: -5px;font-size: 14px; line-height: 1.42857;">
+        <a href="{{ url('home') }}" target="_blank" style="text-decoration: none; color:#c52d2f;">www.ican.cl</a>
+        / Tel&eacute;fono: 56 9 5413 5354 / Email: <a href="mailto:contacto@ican.cl"
+                                                      style="text-decoration: none;color:#c52d2f;">contacto@ican.cl </a>
+    </p>
+</div>
+</body>
+</html>

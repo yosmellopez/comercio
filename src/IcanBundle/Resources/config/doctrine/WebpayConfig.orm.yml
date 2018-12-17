@@ -1,0 +1,35 @@
+IcanBundle\Entity\WebpayConfig:
+  type: entity
+  repositoryClass: IcanBundle\Entity\WebpayConfigRepository
+  table: webpay_config
+  id:
+    webpayId:
+      type: integer
+      nullable: false
+      options:
+        unsigned: false
+      id: true
+      column: webpay_id
+      generator:
+        strategy: AUTO
+  fields:
+    privateKey:
+      type: text
+      nullable: false
+      column: private_key
+    publicCert:
+      type: text
+      nullable: false
+      column: public_cert
+    privateCert:
+      type: text
+      nullable: false
+      column: private_cert
+    comercioCode:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: true
+      column: comercio_code
+  lifecycleCallbacks: {  }

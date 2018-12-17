@@ -1,0 +1,23 @@
+porciento:
+    path:  /porciento
+    defaults: { _controller: IcanBundle:Porciento:index }
+    
+listarPorciento:
+    path:  /porciento/listarPorciento
+    defaults: { _controller: IcanBundle:Porciento:listar, _format: json }
+
+eliminarPorciento:
+    path:  /porciento/eliminarPorciento
+    defaults: { _controller: IcanBundle:Porciento:eliminar, _format: json }
+    
+eliminarPorcientos:
+    path:  /porciento/eliminarPorcientos
+    defaults: { _controller: IcanBundle:Porciento:eliminarPorcientos, _format: json }
+ 
+salvarPorciento:
+    path:  /porciento/salvarPorciento
+    defaults: { _controller: IcanBundle:Porciento:salvar, _format: json }
+    
+cargarDatosPorciento:
+  path:  /porciento/cargarDatos
+  defaults: { _controller: IcanBundle:Porciento:cargarDatos, _format: json }

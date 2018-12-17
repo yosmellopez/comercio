@@ -1,0 +1,151 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+
+    <!-- core CSS -->
+    <link href="{{ asset('bundles/frontend/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/frontend/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/frontend/css/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/frontend/css/prettyPhoto.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/frontend/css/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/frontend/css/responsive.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('bundles/frontend/css/nav-bar.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/frontend/css/my-style.css') }}" rel="stylesheet">
+
+    {% block stylesheetspecific %} {% endblock %}
+{% endblock %}
+
+{% block body %}
+    <!--header-->
+    <header id="header">
+        <div class="top-bar">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-sm-4 col-xs-4">
+                        <div class="top-number">
+                            <p>
+                                <i class="fa fa-phone-square"></i> +0123 456 70 90
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-xs-4">
+                        <a class="" href="{{ url('homefrontend') }}">
+                            <img src="{{ asset('bundles/frontend/images/logo.png') }}" alt="logo">
+                        </a>
+                    </div>
+                    <div class="col-sm-4 col-xs-4">
+                        {% include 'FrontendBundle:Block:social.html.twig' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-inverse navbar-menu-principal" role="banner">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#navbar-collapse-menu">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <div id="navbar-collapse-menu" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav nav-center">
+                        <li class="{% block menuinicioactiveclass %}{% endblock menuinicioactiveclass %}">
+                            <a href="{{ url('homefrontend') }}">Inicio</a>
+                        </li>
+                        <li class="{% block menuquienessomosactiveclass %}{% endblock menuquienessomosactiveclass %}">
+                            <a href="{{ url('quienessomos') }}">Quienes Somos</a>
+                        </li>
+                        <li class="{% block menuserviciosactiveclass %}{% endblock menuserviciosactiveclass %}">
+                            <a href="{{ url('servicios') }}">Servicios</a>
+                        </li>
+                        <li class="{% block menucontactoactiveclass %}{% endblock menucontactoactiveclass %}"><a href="{{ url('contacto') }}">Contacto</a></li>
+                        <li class="{% block menuregistroactiveclass %}{% endblock menuregistroactiveclass %}">
+                            <a href="{{ url('registro') }}">
+                                Registro de Usuario
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ url('login') }}">
+                                Login de Usuario
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div><!--/.container-->
+        </nav>
+        <nav class="navbar navbar-inverse navbar-menu-categorias" role="banner">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#navbar-collapse-categorias">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <div id="navbar-collapse-categorias" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav nav-center">
+                        {% include 'FrontendBundle:Block:categorias.html.twig' with {id: categoria_activa} %}
+                    </ul>
+                </div>
+            </div><!--/.container-->
+        </nav>
+    </header>
+
+    {% block content %} {% endblock %}
+
+    <!--footer-->
+    <footer class="content3 creator-footer">
+        <div class="container">
+            <div class="row spacer05">
+                <div class="col-md-12 text-center">
+                    {{ "now"|date("Y") }} © Ican Cms
+                </div>
+            </div>
+            <div class="row spacer1">
+                <div class="col-md-12 text-center minitext">
+                    Compatible con Safari, Chrome, Opera, Firefox, IE10, IE9, Safari mobile (iOS Devices), Chrome mobile
+                    (Android 4+ Devices).<br>Este sitio ha sido optimizado para una resolución de 1280x1024
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <a href="http://www.ip21.cl" target="_blank">
+                        <img class="logos-footer" src="http://www.ip21.cl/2015/logo-ip21.png">
+                    </a>
+                    <a href="http://www.disrupsoft.cl" target="_blank">
+                        <img class="logos-footer" src="http://www.ip21.cl/2015/logo-ds.png">
+                    </a>
+                    <img class="logos-footer" src="http://www.ip21.cl/2015/logo-html5.png">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+{% endblock %}
+
+{% block javascripts %}
+    <!--[if lt IE 9]>
+    <script src="{{ asset('bundles/frontend/js/html5shiv.js') }}"></script>
+    <script src="{{ asset('bundles/frontend/js/respond.min.js') }}"></script>
+    <![endif]-->
+
+    <script src="{{ asset('bundles/frontend/js/jquery.js') }}"></script>
+    <script src="{{ asset('bundles/frontend/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bundles/frontend/js/jquery.prettyPhoto.js') }}"></script>
+    <script src="{{ asset('bundles/frontend/js/jquery.isotope.min.js') }}"></script>
+    <script src="{{ asset('bundles/frontend/js/main.js') }}"></script>
+    <script src="{{ asset('bundles/frontend/js/wow.min.js') }}"></script>
+
+    {% block javascriptspecific %}
+
+    {% endblock %}
+{% endblock %}

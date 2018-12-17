@@ -1,0 +1,45 @@
+IcanBundle\Entity\CotizacionProducto:
+  type: entity
+  repositoryClass: IcanBundle\Entity\CotizacionProductoRepository
+  table: cotizacion_producto
+  id:
+    cotizacionproductoId:
+      type: integer
+      nullable: false
+      options:
+        unsigned: false
+      id: true
+      column: cotizacionproducto_id
+      generator:
+        strategy: AUTO
+  fields:
+    cantidad:
+      type: integer
+      options:
+        unsigned: false
+      nullable: false
+    descuento:
+      type: integer
+      options:
+        unsigned: false
+      nullable: false
+  manyToOne:
+    producto:
+      targetEntity: IcanBundle\Entity\Producto
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        producto_id:
+          referencedColumnName: producto_id
+      orphanRemoval: false
+    cotizacion:
+      targetEntity: IcanBundle\Entity\Cotizacion
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        cotizacion_id:
+          referencedColumnName: cotizacion_id
+      orphanRemoval: false
+  lifecycleCallbacks: {  }

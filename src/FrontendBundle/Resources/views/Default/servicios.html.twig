@@ -1,0 +1,77 @@
+{% extends 'FrontendBundle::layout.html.twig' %}
+
+{% block title %} {{ pagina.titulo }} {% endblock title %}
+
+{% block metas_titulo %}
+    <meta name="title" content="{{ pagina.titulo }} - Ican"/>
+    <meta http-equiv="title" content="{{ pagina.titulo }} - Ican"/>
+    <meta name="DC.Title" content="{{ pagina.titulo }} - Ican"/>
+{% endblock metas_titulo %}
+
+{% block metas_descripcion %}
+    <meta name="description" content="{{ pagina.descripcion |striptags| truncate(180, true) }}"/>
+    <meta http-equiv="description" content="{{ pagina.descripcion |striptags| truncate(180, true) }}"/>
+    <meta name="DC.description" content="{{ pagina.descripcion |striptags| truncate(180, true) }}"/>
+{% endblock metas_descripcion %}
+
+{% block keywords %}
+    <meta name="Keywords" content="{{ pagina.tags }}"/>
+    <meta http-equiv="keywords" content="{{ pagina.tags }}"/>
+    <meta name="DC.keywords" content="{{ pagina.tags }}"/>
+{% endblock keywords %}
+
+{% block stylesheetspecific %}
+
+{% endblock %}
+
+{% block menuserviciosactiveclass %}active{% endblock menuserviciosactiveclass %}
+
+
+{% block content %}
+    <section id="servicios">
+        <div class="container">
+            <div class="center wow fadeInDown spacer1">
+                <h2 class="spacer1">{{ pagina.titulo }}</h2>
+                <p class="lead">
+                    {{ pagina.descripcion |raw }}
+                </p>
+            </div>
+
+            <!-- about us slider -->
+            <div id="services-slider">
+                <div id="carousel-slider" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators visible-xs">
+                        {% for item in pagina.imagenes %}
+                            <li data-target="#carousel-slider" data-slide-to="{{ loop.index0 }}"
+                                class="{% if loop.first %}active{% endif %}"></li>
+                        {% endfor %}
+                    </ol>
+
+                    <div class="carousel-inner">
+                        {% for item in pagina.imagenes %}
+                            <div class="item {% if loop.first %}active{% endif %}">
+                                <img src="{{ asset('uploads/servicios/'~item.imagen) }}" class="img-responsive"
+                                     alt="{{ item.imagen }}">
+                            </div>
+                        {% endfor %}
+                    </div>
+
+                    <a class="left carousel-control hidden-xs" href="#carousel-slider" data-slide="prev">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a class=" right carousel-control hidden-xs" href="#carousel-slider" data-slide="next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                </div> <!--/#carousel-slider-->
+            </div>
+
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block javascriptspecific %}
+
+{% endblock %}

@@ -1,0 +1,21 @@
+IcanBundle\Entity\Porciento:
+  type: entity
+  repositoryClass: IcanBundle\Entity\PorcientoRepository
+  table: porciento
+  id:
+    porcientoId:
+      type: integer
+      nullable: false
+      options:
+        unsigned: false
+      id: true
+      column: porciento_id
+      generator:
+        strategy: AUTO
+  fields:
+    valor:
+      type: integer
+      nullable: false
+      options:
+        unsigned: false
+  lifecycleCallbacks: {  }

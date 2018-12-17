@@ -1,0 +1,106 @@
+IcanBundle\Entity\Redsocial:
+    type: entity
+    repositoryClass: IcanBundle\Entity\RedsocialRepository
+    table: redsocial
+    id:
+        redsocialId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: redsocial_id
+            generator:
+                strategy: AUTO
+    fields:
+        facebook:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        activarfacebook:
+            type: boolean
+            nullable: true
+        youtube:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        activaryoutube:
+            type: boolean
+            nullable: true
+        twitter:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        activartwitter:
+            type: boolean
+            nullable: true
+        flickr:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        activarflickr:
+            type: boolean
+            nullable: true
+        instagram:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        activarinstagram:
+            type: boolean
+            nullable: true
+        linkedin:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        activarlinkedin:
+            type: boolean
+            nullable: true
+        soundcloud:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        activarsoundcloud:
+            type: boolean
+            nullable: true
+        tumblr:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        activartumblr:
+            type: boolean
+            nullable: true
+        vimeo:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        activarvimeo:
+            type: boolean
+            nullable: true
+        google:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        activargoogle:
+            type: boolean
+            nullable: true
+    lifecycleCallbacks: {  }

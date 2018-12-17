@@ -1,0 +1,86 @@
+IcanBundle\Entity\TransaccionWebpay:
+  type: entity
+  repositoryClass: IcanBundle\Entity\TransaccionWebpayRepository
+  table: transaccion_webpay
+  id:
+    transaccionId:
+      type: integer
+      nullable: false
+      options:
+        unsigned: false
+      id: true
+      column: transaccion_id
+      generator:
+        strategy: AUTO
+  fields:
+    transactionDate:
+      type: datetime
+      nullable: false
+    cardNumber:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: true
+    cardExpirationDate:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: true
+    authorizationCode:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: true
+    paymentTypeCode:
+      type: string
+      length: 2
+      options:
+        fixed: false
+      nullable: true
+    responseCode:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: true
+    amount:
+      type: float
+      options:
+        fixed: false
+        unsigned: false
+      nullable: false
+    sharesAmount:
+      type: float
+      options:
+        fixed: false
+        unsigned: false
+      nullable: false
+    sharesNumber:
+      type: integer
+      nullable: false
+      options:
+        unsigned: false
+    commerceCode:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: true
+    token:
+      type: text
+      nullable: false
+  manyToOne:
+    cotizacion:
+      targetEntity: IcanBundle\Entity\Cotizacion
+      cascade: {  }
+      fetch: LAZY
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        cotizacion_id:
+          referencedColumnName: cotizacion_id
+      orphanRemoval: false
+  lifecycleCallbacks: {  }

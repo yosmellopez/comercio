@@ -1,0 +1,23 @@
+seoonpage:
+    path:  /seo-on-page
+    defaults: { _controller: IcanBundle:SeoOnPage:index }
+    
+listarPaginas:
+    path:  /seo-on-page/listarPagina
+    defaults: { _controller: IcanBundle:SeoOnPage:listar, _format: json }
+
+eliminarPagina:
+    path:  /seo-on-page/eliminarPagina
+    defaults: { _controller: IcanBundle:SeoOnPage:eliminar, _format: json }
+    
+eliminarPaginas:
+    path:  /seo-on-page/eliminarPaginas
+    defaults: { _controller: IcanBundle:SeoOnPage:eliminarPaginas, _format: json }
+ 
+salvarPagina:
+    path:  /seo-on-page/salvarPagina
+    defaults: { _controller: IcanBundle:SeoOnPage:salvar, _format: json }  
+
+cargarDatosPagina:
+    path:  /seo-on-page/cargarDatos
+    defaults: { _controller: IcanBundle:SeoOnPage:cargarDatos, _format: json }

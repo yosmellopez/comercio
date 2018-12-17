@@ -1,0 +1,23 @@
+soporte:
+    path:  /soporte-tecnico
+    defaults: { _controller: IcanBundle:Soporte:index }
+    
+listarSoporte:
+    path:  /soporte/listarSoporte
+    defaults: { _controller: IcanBundle:Soporte:listar, _format: json }
+
+eliminarSoporte:
+    path:  /soporte/eliminarSoporte
+    defaults: { _controller: IcanBundle:Soporte:eliminar, _format: json }
+    
+eliminarSoportes:
+    path:  /soporte/eliminarSoportes
+    defaults: { _controller: IcanBundle:Soporte:eliminarSoportes, _format: json }
+ 
+salvarSoporte:
+    path:  /soporte/salvarSoporte
+    defaults: { _controller: IcanBundle:Soporte:salvar, _format: json }  
+   
+cargarDatosSoporte:
+    path:  /soporte/cargarDatos
+    defaults: { _controller: IcanBundle:Soporte:cargarDatos, _format: json }

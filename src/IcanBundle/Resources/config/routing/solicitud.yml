@@ -1,0 +1,23 @@
+solicitud:
+    path:  /cotizacion-proyecto
+    defaults: { _controller: IcanBundle:Solicitud:index }
+    
+listarSolicitud:
+    path:  /solicitud/listarSolicitud
+    defaults: { _controller: IcanBundle:Solicitud:listar, _format: json }
+
+eliminarSolicitud:
+    path:  /solicitud/eliminarSolicitud
+    defaults: { _controller: IcanBundle:Solicitud:eliminar, _format: json }
+    
+eliminarSolicitudes:
+    path:  /solicitud/eliminarSolicitudes
+    defaults: { _controller: IcanBundle:Solicitud:eliminarSolicitudes, _format: json }
+ 
+salvarSolicitud:
+    path:  /solicitud/salvarSolicitud
+    defaults: { _controller: IcanBundle:Solicitud:salvar, _format: json }  
+   
+cargarDatosSolicitud:
+    path:  /solicitud/cargarDatos
+    defaults: { _controller: IcanBundle:Solicitud:cargarDatos, _format: json }

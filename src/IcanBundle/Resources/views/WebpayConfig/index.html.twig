@@ -1,0 +1,156 @@
+{% extends 'IcanBundle::layout.html.twig' %}
+
+{% block subtitle %} - Configuración Webpay{% endblock %}
+
+{% block stylesheetspecific %}
+    <link href="{{ asset('bundles/ican/plugins/jquery-tags-input/jquery.tagsinput.css') }}" rel="stylesheet"
+          type="text/css"/>
+{% endblock %}
+
+{% block content %}
+    <!-- BEGIN: Subheader -->
+    <div class="m-subheader ">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto">
+                <h3 class="m-subheader__title m-subheader__title--separator">Dashboard</h3>
+                <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                    <li class="m-nav__item m-nav__item--home">
+                        <a href="{{ url('home') }}" class="m-nav__link m-nav__link--icon">
+                            <i class="m-nav__link-icon la la-home"></i>
+                        </a>
+                    </li>
+                    <li class="m-nav__separator">-</li>
+                    <li class="m-nav__item">
+                        <a href="" class="m-nav__link">
+                            <span class="m-nav__link-text">Configuración Webpay</span>
+                        </a>
+                    </li>
+                    <li class="m-nav__separator">-</li>
+                    <li class="m-nav__item">
+                        <a href="" class="m-nav__link">
+                            <span class="m-nav__link-text">Administre la configuración de webpay</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- END: Subheader -->
+
+    <div class="m-content">
+        <div id="form-pagina" class="m-portlet" m-portlet="true">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text" id="form-slider-title">
+                            ¿Deseas administrar la configuración de webpay? Sigue los siguientes pasos:
+                        </h3>
+                    </div>
+                </div>
+                <div class="m-portlet__head-tools">
+                    <ul class="m-portlet__nav">
+                        <li class="m-portlet__nav-item">
+                            <a href="#" m-portlet-tool="fullscreen"
+                               class="m-portlet__nav-link m-portlet__nav-link--icon">
+                                <i class="la la-expand"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <form class="m-form" id="webpay-form" action="#"
+                  enctype="multipart/form-data" method="post">
+
+                <input type="hidden" id="webpay_id" name="webpay_id"
+                       value="{% if webpay != null %}{{ webpay.webpayId }}{% endif %}"/>
+
+                <div class="m-portlet__body">
+                    <div class="m-form__section m-form__section--first">
+                        <div class="form-group m-form__group ic-form-group">
+                            <label>
+                                <span class="ic-step-number">1</span>
+                                Para comenzar, ingresa el código de tu comercio
+                                <span class="ic-small italic">(obligatorio)</span>
+                            </label>
+                            <p class="m-form__help">
+                                Es muy importante que ingreses el código de tu comercio
+                                otorgado por Transbanc, mediante este código se realizarán todas las
+                                operaciones.
+                            </p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" id="comercioCode"
+                                           name="comercioCode"
+                                           value="{% if webpay != null %}{{ webpay.comercioCode }}{% endif %}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group ic-form-group">
+                            <label>
+                                <span class="ic-step-number">2</span>
+                                A continuación, ingrese el contenido de la llave privada generada
+                                <span class="ic-small italic">(obligatorio)</span>
+                            </label>
+                            <p class="m-form__help">
+                                Abra el archivo .key con un editor de texto y copie aquí su contenido
+                            </p>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <textarea class="form-control" id="privateKey" name="privateKey"
+                                              rows="6">{{ webpay.privateKey }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group ic-form-group">
+                            <label>
+                                <span class="ic-step-number">3</span>
+                                Seguidamente, ingrese el contenido del certificado privado entregado por Transbanc
+                                <span class="ic-small italic">(obligatorio)</span>
+                            </label>
+                            <p class="m-form__help">
+                                Abra el archivo .pem con un editor de texto y copie aquí su contenido.
+                            </p>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <textarea class="form-control" id="privateCert" name="privateCert"
+                                              rows="6">{{ webpay.privateCert }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group ic-form-group">
+                            <label>
+                                <span class="ic-step-number">4</span>
+                                Para finalizar, ingrese el contenido del certificado público generado por el comercio
+                                <span class="ic-small italic">(obligatorio)</span>
+                            </label>
+                            <p class="m-form__help">
+                                Abra el archivo .crt con un editor de texto y copie aquí su contenido.
+                            </p>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <textarea class="form-control" id="publicCert" name="publicCert"
+                                              rows="6">{{ webpay.publicCert }}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-form__actions">
+                        <button id="btn-salvar-webpay" class="btn btn-success" type="button">
+                            Guardar
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascriptsspecific %}
+    <script src="{{ asset('bundles/ican/js/pages/webpay-config.js') }}"></script>
+    <script>
+        jQuery(document).ready(function () {
+            WebpayConfig.init();
+        });
+    </script>
+{% endblock %}

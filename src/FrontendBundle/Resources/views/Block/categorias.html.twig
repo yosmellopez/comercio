@@ -1,0 +1,19 @@
+{%for item in categorias%}
+    <li class="{%if item.subcategorias | length > 0%}dropdown{%endif%} {%if id == item.categoria_id %}active{%endif%}">
+        <a {%if item.subcategorias | length > 0%}class="dropdown-toggle" data-hover="dropdown" data-close-others="true" data-toggle="dropdown" data-target="#" href="#" {%else%} href="{{url('listadoproductoscategoria',{categoria: item.url})}}" {%endif%}>
+            {{item.nombre}}
+            {%if item.subcategorias | length > 0%}
+                <span class="caret"></span>
+            {%endif%}
+        </a>
+        {%if item.subcategorias | length > 0%}
+            <ul class="dropdown-menu" role="menu">
+                {%for subitem in item.subcategorias%}
+                    <li>
+                        <a href="{{url('listadoproductoscategoria',{categoria: subitem.url})}}">{{subitem.nombre}}</a>
+                    </li>
+                {%endfor%}
+            </ul>
+        {%endif%}
+    </li>
+{%endfor%}

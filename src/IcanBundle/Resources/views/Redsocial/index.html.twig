@@ -1,0 +1,356 @@
+{% extends 'IcanBundle::layout.html.twig' %}
+
+{% block subtitle %} - Redes Sociales{% endblock %}
+
+{% block stylesheetspecific %}{% endblock %}
+
+{% block content %}
+    <!-- BEGIN: Subheader -->
+    <div class="m-subheader ">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto">
+                <h3 class="m-subheader__title m-subheader__title--separator">Dashboard</h3>
+                <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                    <li class="m-nav__item m-nav__item--home">
+                        <a href="{{ url('home') }}" class="m-nav__link m-nav__link--icon">
+                            <i class="m-nav__link-icon la la-home"></i>
+                        </a>
+                    </li>
+                    <li class="m-nav__separator">-</li>
+                    <li class="m-nav__item">
+                        <a href="" class="m-nav__link">
+                            <span class="m-nav__link-text">Redes Sociales</span>
+                        </a>
+                    </li>
+                    <li class="m-nav__separator">-</li>
+                    <li class="m-nav__item">
+                        <a href="" class="m-nav__link">
+                            <span class="m-nav__link-text">Administre las redes sociales</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- END: Subheader -->
+
+    <div class="m-content">
+        <div id="form-redsocial" class="m-portlet" m-portlet="true">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text" id="form-slider-title">
+                            ¿Deseas gestionar las redes sociales de tu sitio? Completa el siguiente formulario:
+                        </h3>
+                    </div>
+                </div>
+                <div class="m-portlet__head-tools">
+                    <ul class="m-portlet__nav">
+                        <li class="m-portlet__nav-item">
+                            <a href="javascript:;" m-portlet-tool="fullscreen"
+                               class="m-portlet__nav-link m-portlet__nav-link--icon">
+                                <i class="la la-expand"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <form class="m-form" id="redsocial-form" action="#"
+                  enctype="multipart/form-data" method="post">
+
+                <input type="hidden" id="redsocial_id" name="redsocial_id"
+                       value="{% if redsocial is not null %}{{ redsocial.redsocialId }}{% endif %}"/>
+
+                <div class="m-portlet__body">
+                    <div class="m-form__section m-form__section--first">
+                        <div class="form-group m-form__group">
+                            <label>
+                                Ingresa el link correspondiente a cada red social según sea necesario.
+                            </label>
+                            <p class="m-form__help">
+                                Recuerda activar las redes sociales que necesites y guardar los cambios utilizando el botón ubicado al final del formulario.
+                            </p>
+                            <label>Facebook</label>
+                            <div class="row m--margin-bottom-10">
+                                <div class="col-md-8">
+                                    <div class="form-group m-form__group">
+                                        <div class="input-group m-input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text input-facebook">
+                                                    <i class="fab fa-facebook"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control" name="facebook" id="facebook" value="{{redsocial.facebook}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="m-form__group form-group">
+                                        <div class="m-checkbox-inline m--margin-top-10">
+                                            <label class="m-checkbox">
+                                                <input type="checkbox" name="activarfacebook" id="activarfacebook" {%if redsocial.activarfacebook == 1%}checked{%endif%}>
+                                                Activar
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <label>Youtube</label>
+                            <div class="row m--margin-bottom-10">
+                                <div class="col-md-8">
+                                    <div class="form-group m-form__group">
+                                        <div class="input-group m-input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text input-youtube">
+                                                    <i class="fab fa-youtube"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control" name="youtube" id="youtube" value="{{redsocial.youtube}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="m-form__group form-group">
+                                        <div class="m-checkbox-inline m--margin-top-10">
+                                            <label class="m-checkbox">
+                                                <input type="checkbox" name="activaryoutube" id="activaryoutube" {%if redsocial.activaryoutube == 1%}checked{%endif%}>
+                                                Activar
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <label>Twitter</label>
+                            <div class="row m--margin-bottom-10">
+                                <div class="col-md-8">
+                                    <div class="form-group m-form__group">
+                                        <div class="input-group m-input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text input-twitter">
+                                                    <i class="fab fa-twitter"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control" name="twitter" id="twitter" value="{{redsocial.twitter}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="m-form__group form-group">
+                                        <div class="m-checkbox-inline m--margin-top-10">
+                                            <label class="m-checkbox">
+                                                <input type="checkbox" name="activartwitter" id="activartwitter" {%if redsocial.activartwitter == 1%}checked{%endif%}>
+                                                Activar
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <label>Flickr</label>
+                            <div class="row m--margin-bottom-10">
+                                <div class="col-md-8">
+                                    <div class="form-group m-form__group">
+                                        <div class="input-group m-input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text input-flickr">
+                                                    <i class="fab fa-flickr"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control" name="flickr" id="flickr" value="{{redsocial.flickr}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="m-form__group form-group">
+                                        <div class="m-checkbox-inline m--margin-top-10">
+                                            <label class="m-checkbox">
+                                                <input type="checkbox" name="activarflickr" id="activarflickr" {%if redsocial.activarflickr == 1%}checked{%endif%}>
+                                                Activar
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <label>Instagram</label>
+                            <div class="row m--margin-bottom-10">
+                                <div class="col-md-8">
+                                    <div class="form-group m-form__group">
+                                        <div class="input-group m-input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text input-instagram">
+                                                    <i class="fab fa-instagram"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control" name="instagram" id="instagram" value="{{redsocial.instagram}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="m-form__group form-group">
+                                        <div class="m-checkbox-inline m--margin-top-10">
+                                            <label class="m-checkbox">
+                                                <input type="checkbox" name="activarinstagram" id="activarinstagram" {%if redsocial.activarinstagram == 1%}checked{%endif%}>
+                                                Activar
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <label>LinkedIn</label>
+                            <div class="row m--margin-bottom-10">
+                                <div class="col-md-8">
+                                    <div class="form-group m-form__group">
+                                        <div class="input-group m-input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text input-linkedin">
+                                                    <i class="fab fa-linkedin"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control" name="linkedin" id="linkedin" value="{{redsocial.linkedin}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="m-form__group form-group">
+                                        <div class="m-checkbox-inline m--margin-top-10">
+                                            <label class="m-checkbox">
+                                                <input type="checkbox" name="activarlinkedin" id="activarlinkedin" {%if redsocial.activarlinkedin == 1%}checked{%endif%}>
+                                                Activar
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <label>SoundCloud</label>
+                            <div class="row m--margin-bottom-10">
+                                <div class="col-md-8">
+                                    <div class="form-group m-form__group">
+                                        <div class="input-group m-input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text input-soundcloud">
+                                                    <i class="fab fa-soundcloud"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control" name="soundcloud" id="soundcloud" value="{{redsocial.soundcloud}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="m-form__group form-group">
+                                        <div class="m-checkbox-inline m--margin-top-10">
+                                            <label class="m-checkbox">
+                                                <input type="checkbox" name="activarsoundcloud" id="activarsoundcloud" {%if redsocial.activarsoundcloud == 1%}checked{%endif%}>
+                                                Activar
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <label>Tumblr</label>
+                            <div class="row m--margin-bottom-10">
+                                <div class="col-md-8">
+                                    <div class="form-group m-form__group">
+                                        <div class="input-group m-input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text input-tumblr">
+                                                    <i class="fab fa-tumblr"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control" name="tumblr" id="tumblr" value="{{redsocial.tumblr}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="m-form__group form-group">
+                                        <div class="m-checkbox-inline m--margin-top-10">
+                                            <label class="m-checkbox">
+                                                <input type="checkbox" name="activartumblr" id="activartumblr" {%if redsocial.activartumblr == 1%}checked{%endif%}>
+                                                Activar
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <label>Vimeo</label>
+                            <div class="row m--margin-bottom-10">
+                                <div class="col-md-8">
+                                    <div class="form-group m-form__group">
+                                        <div class="input-group m-input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text input-vimeo">
+                                                    <i class="fab fa-vimeo"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control" name="vimeo" id="vimeo" value="{{redsocial.vimeo}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="m-form__group form-group">
+                                        <div class="m-checkbox-inline m--margin-top-10">
+                                            <label class="m-checkbox">
+                                                <input type="checkbox" name="activarvimeo" id="activarvimeo" {%if redsocial.activarvimeo == 1%}checked{%endif%}>
+                                                Activar
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <label>Google</label>
+                            <div class="row m--margin-bottom-10">
+                                <div class="col-md-8">
+                                    <div class="form-group m-form__group">
+                                        <div class="input-group m-input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text input-google">
+                                                    <i class="fab fa-google"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control" name="google" id="google" value="{{redsocial.google}}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="m-form__group form-group">
+                                        <div class="m-checkbox-inline m--margin-top-10">
+                                            <label class="m-checkbox">
+                                                <input type="checkbox" name="activargoogle" id="activargoogle" {%if redsocial.activargoogle == 1%}checked{%endif%}>
+                                                Activar
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="m-form__actions">
+                        <button id="btn-salvar-redsocial" class="btn btn-success" type="button">
+                            Guardar
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascriptsspecific %}
+
+    <script src="{{ asset('bundles/ican/js/pages/redes-sociales.js') }}"></script>
+    <script>
+        jQuery(document).ready(function () {
+            RedesSociales.init();
+        });
+    </script>
+{% endblock %}

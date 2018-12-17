@@ -1,0 +1,80 @@
+IcanBundle\Entity\Cotizacion:
+  type: entity
+  repositoryClass: IcanBundle\Entity\CotizacionRepository
+  table: cotizacion
+  id:
+    cotizacionId:
+      type: integer
+      nullable: false
+      options:
+        unsigned: false
+      id: true
+      column: cotizacion_id
+      generator:
+        strategy: AUTO
+  fields:
+    nombre:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: false
+    apellidos:
+      type: string
+      nullable: false
+      length: 255
+      options:
+        fixed: false
+    email:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: false
+    rut:
+      type: string
+      nullable: false
+      length: 255
+      options:
+        fixed: false
+    telefono:
+      type: string
+      nullable: false
+      length: 255
+      options:
+        fixed: false
+    calle:
+      type: string
+      nullable: false
+      length: 255
+      options:
+        fixed: false
+    numero:
+      type: string
+      nullable: false
+      length: 255
+      options:
+        fixed: false
+    comentario:
+      type: text
+      nullable: false
+    fecha:
+      type: datetime
+      nullable: true
+    estado:
+      type: string
+      nullable: false
+      length: 255
+      options:
+        fixed: false
+  manyToOne:
+    usuario:
+      targetEntity: IcanBundle\Entity\Usuario
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        usuario_id:
+          referencedColumnName: usuario_id
+      orphanRemoval: false
+  lifecycleCallbacks: {  }

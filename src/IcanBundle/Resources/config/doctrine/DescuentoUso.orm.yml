@@ -1,0 +1,42 @@
+IcanBundle\Entity\DescuentoUso:
+  type: entity
+  repositoryClass: IcanBundle\Entity\DescuentoUsoRepository
+  table: descuento_uso
+  id:
+    usoId:
+      type: integer
+      nullable: false
+      options:
+        unsigned: false
+      id: true
+      column: uso_id
+      generator:
+        strategy: AUTO
+  fields:
+    rut:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: false
+    email:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: false
+    createdAt:
+      type: datetime
+      nullable: true
+      column: created_at
+  manyToOne:
+    descuento:
+      targetEntity: IcanBundle\Entity\Descuento
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        descuento_id:
+          referencedColumnName: descuento_id
+      orphanRemoval: false
+  lifecycleCallbacks: {  }

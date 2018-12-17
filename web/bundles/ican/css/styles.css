@@ -1,0 +1,209 @@
+/* You can add global styles to this file, and also import other style files */
+.btn-focus {
+    color: #fff;
+    background-color: #A2CC00 !important;
+    border-color: #A2CC00 !important;;
+}
+
+.btn-focus:hover {
+    color: #fff;
+    background-color: #ACD704 !important;;
+    border-color: #ACD704 !important;;
+}
+
+.btn-focus:focus, .btn-focus.focus {
+    box-shadow: 0 0 0 3px rgba(222, 248, 120, 0.6) !important;;
+}
+
+.btn-focus.disabled, .btn-focus:disabled {
+    background-color: #DEF878 !important;;
+    border-color: #DEF878 !important;;
+}
+
+.btn-focus:active, .btn-focus.active,
+.show > .btn-focus.dropdown-toggle {
+    background-color: #A2CC00 !important;;
+    background-image: none !important;;
+    border-color: #A2CC00 !important;;
+}
+
+.btn-outline-focus {
+    color: #A2CC00 !important;;
+    background-color: transparent !important;;
+    background-image: none !important;;
+    border-color: #A2CC00 !important;;
+}
+
+.btn-outline-focus:hover {
+    color: #ffffff;
+    background-color: #A2CC00 !important;;
+    border-color: #A2CC00 !important;
+}
+
+.btn-outline-focus:focus, .btn-outline-focus.focus {
+    box-shadow: 0 0 0 3px rgba(222, 248, 120, 0.6);
+}
+
+.btn-outline-focus.disabled, .btn-outline-focus:disabled {
+    color: #DEF878 !important;
+    background-color: transparent;
+}
+
+.btn-outline-focus:active, .btn-outline-focus.active,
+.show > .btn-outline-focus.dropdown-toggle {
+    color: #ffffff;
+    background-color: #A2CC00;
+    border-color: #A2CC00;
+}
+
+.m-aside-menu.m-aside-menu--skin-light .m-menu__nav > .m-menu__item.m-menu__item--active > .m-menu__heading .m-menu__link-text, .m-aside-menu.m-aside-menu--skin-light .m-menu__nav > .m-menu__item.m-menu__item--active > .m-menu__link .m-menu__link-text {
+    color: #A2CC00;
+}
+
+.m-aside-menu.m-aside-menu--skin-light .m-menu__nav > .m-menu__item.m-menu__item--active > .m-menu__heading .m-menu__link-icon, .m-aside-menu.m-aside-menu--skin-light .m-menu__nav > .m-menu__item.m-menu__item--active > .m-menu__link .m-menu__link-icon {
+    color: #A2CC00;
+}
+
+.m-aside-menu.m-aside-menu--skin-light .m-menu__nav > .m-menu__item .m-menu__submenu .m-menu__item:hover > .m-menu__heading .m-menu__link-text, .m-aside-menu.m-aside-menu--skin-light .m-menu__nav > .m-menu__item .m-menu__submenu .m-menu__item:hover > .m-menu__link .m-menu__link-text {
+    color: #DEF878;
+}
+
+.m-portlet__head-text {
+    color: #A2CC00 !important;
+}
+
+.btn.m-btn--hover-brand:hover, .btn.m-btn--hover-brand.active, .btn.m-btn--hover-brand:active, .btn.m-btn--hover-brand:focus, .show > .btn.m-btn--hover-brand.dropdown-toggle {
+    border-color: #A2CC00 !important;
+    color: #ffffff !important;
+    background-color: #A2CC00 !important;
+}
+
+.m-topbar__username {
+    color: #A2CC00 !important;
+}
+
+.btn.m-btn--label-brand {
+    color: #A2CC00;
+}
+
+.m-nav > .m-nav__item:hover > .m-nav__heading .m-nav__link-icon, .m-nav > .m-nav__item:hover > .m-nav__heading .m-nav__link-text, .m-nav > .m-nav__item:hover > .m-nav__link .m-nav__link-icon, .m-nav > .m-nav__item:hover > .m-nav__link .m-nav__link-text, .m-nav > .m-nav__item.m-nav__item--active > .m-nav__heading .m-nav__link-icon, .m-nav > .m-nav__item.m-nav__item--active > .m-nav__heading .m-nav__link-text, .m-nav > .m-nav__item.m-nav__item--active > .m-nav__link .m-nav__link-icon, .m-nav > .m-nav__item.m-nav__item--active > .m-nav__link .m-nav__link-text {
+    color: #A2CC00;
+}
+
+.m-aside-menu.m-aside-menu--skin-light .m-menu__nav > .m-menu__item .m-menu__submenu .m-menu__item.m-menu__item--active > .m-menu__heading .m-menu__link-text, .m-aside-menu.m-aside-menu--skin-light .m-menu__nav > .m-menu__item .m-menu__submenu .m-menu__item.m-menu__item--active > .m-menu__link .m-menu__link-text {
+    color: #A2CC00;
+}
+
+.m-aside-menu.m-aside-menu--skin-light .m-menu__nav > .m-menu__item .m-menu__submenu .m-menu__item.m-menu__item--active > .m-menu__heading .m-menu__link-bullet.m-menu__link-bullet--dot > span, .m-aside-menu.m-aside-menu--skin-light .m-menu__nav > .m-menu__item .m-menu__submenu .m-menu__item.m-menu__item--active > .m-menu__link .m-menu__link-bullet.m-menu__link-bullet--dot > span {
+    background-color: #A2CC00;
+}
+
+.nav.nav-pills.nav-pills--brand .nav-link.active {
+    background: #A2CC00;
+    color: #ffffff;
+}
+
+.m-tabs-line.m-tabs-line--primary.nav.nav-tabs .nav-link:hover, .m-tabs-line.m-tabs-line--primary.nav.nav-tabs .nav-link.active, .m-tabs-line.m-tabs-line--primary a.m-tabs__link:hover, .m-tabs-line.m-tabs-line--primary a.m-tabs__link.active {
+    color: #A2CC00;
+    border-bottom: 1px solid #A2CC00;
+}
+
+.ic-step-number {
+    background: #A2CC00 !important;
+}
+
+.m-form__actions {
+    border-top: 1px solid #ebedf2;
+    margin-top: 30px;
+}
+
+.m-checkbox.m-checkbox--focus > span:after {
+    border: solid #A2CC00;
+}
+
+.m-checkbox.m-checkbox--focus > input:checked ~ span {
+    border: 1px solid #A2CC00 !important;
+}
+
+.form-control:focus {
+    border-color: #A2CC00;
+    color: #575962;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--multiple,
+.select2-container--default.select2-container--focus .select2-selection--single, .select2-container--default.select2-container--open .select2-selection--multiple,
+.select2-container--default.select2-container--open .select2-selection--single {
+    border-color: #A2CC00;
+}
+
+.m-table.m-table--border-brand, .m-table.m-table--border-brand th, .m-table.m-table--border-brand td {
+    border-color: #A2CC00;
+}
+
+.m-table.m-table--head-bg-brand thead th {
+    background: #A2CC00;
+}
+
+.m-dropzone.m-dropzone--primary {
+    border-color: #A2CC00;
+}
+
+.dz-remove, .dz-remove:hover {
+    color: #A2CC00;
+}
+
+.fc-unthemed .fc-toolbar .fc-button:focus, .fc-unthemed .fc-toolbar .fc-button:active, .fc-unthemed .fc-toolbar .fc-button.fc-state-active {
+    background: #A2CC00;
+}
+
+.m--font-cerda {
+    color: #A2CC00;
+}
+
+.m-portlet.m-portlet--accent.m-portlet--head-solid-bg .m-portlet__head .m-portlet__head-text {
+    color: #ffffff !important;
+}
+
+.m-portlet.m-portlet--accent.m-portlet--head-solid-bg {
+    background: #A2CC00;
+    border-color: #A2CC00;
+}
+
+.m-portlet.m-portlet--accent.m-portlet--head-solid-bg .m-portlet__head {
+    background-color: #A2CC00;
+    border-color: #A2CC00;
+}
+
+.m-portlet__nav-item .nav-link {
+    color: #6f727d;
+    font-weight: 400;
+    border-radius: 20px;
+    padding: .6em 1.4em;
+    font-size: .85rem;
+}
+
+.m-portlet__nav-item .active {
+    background-color: #A2CC00;
+    color: #fff;
+}
+.m-datatable.m-datatable--default > .m-datatable__pager > .m-datatable__pager-nav > li > .m-datatable__pager-link.m-datatable__pager-link--active {
+    background: #A2CC00;
+    color: #ffffff;
+}
+.m-datatable.m-datatable--default > .m-datatable__pager > .m-datatable__pager-nav > li > .m-datatable__pager-link.m-datatable__pager-link--first, .m-datatable.m-datatable--default > .m-datatable__pager > .m-datatable__pager-nav > li > .m-datatable__pager-link.m-datatable__pager-link--prev, .m-datatable.m-datatable--default > .m-datatable__pager > .m-datatable__pager-nav > li > .m-datatable__pager-link.m-datatable__pager-link--next, .m-datatable.m-datatable--default > .m-datatable__pager > .m-datatable__pager-nav > li > .m-datatable__pager-link.m-datatable__pager-link--last {
+    color: #A2CC00;
+}
+.m-datatable.m-datatable--default > .m-datatable__pager > .m-datatable__pager-nav > li > .m-datatable__pager-link:hover {
+    color: #A2CC00;
+}
+.m-datatable>.m-datatable__pager>.m-datatable__pager-nav>li>.m-datatable__pager-link:hover {
+    background: #A2CC00 !important;
+    color: #fff !important;
+}
+.bootstrap-select.btn-group.show > .dropdown-toggle.btn-default, .bootstrap-select.btn-group.show > .dropdown-toggle.btn-secondary {
+    border-color: #A2CC00 !important;
+}
+
+.m-form__actions>button{
+    margin-right: 10px;
+}

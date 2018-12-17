@@ -1,0 +1,19 @@
+transaccionwebpay:
+    path:  /transacciones-webpay
+    defaults: { _controller: IcanBundle:TransaccionWebpay:index }
+    
+listarTransaccion:
+    path:  /transaccion/listarTransaccion
+    defaults: { _controller: IcanBundle:TransaccionWebpay:listar, _format: json }
+
+eliminarTransaccion:
+    path:  /transaccion/eliminarTransaccion
+    defaults: { _controller: IcanBundle:TransaccionWebpay:eliminar, _format: json }
+    
+eliminarTransacciones:
+    path:  /transaccion/eliminarTransacciones
+    defaults: { _controller: IcanBundle:TransaccionWebpay:eliminarTransacciones, _format: json }
+
+cargarDatosTransaccion:
+    path:  /transaccion/cargarDatos
+    defaults: { _controller: IcanBundle:TransaccionWebpay:cargarDatos, _format: json }

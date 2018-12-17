@@ -1,0 +1,31 @@
+cotizacion:
+    path:  /cotizacion
+    defaults: { _controller: IcanBundle:Cotizacion:index }
+    
+listarCotizacion:
+    path:  /cotizacion/listarCotizacion
+    defaults: { _controller: IcanBundle:Cotizacion:listar, _format: json }
+
+eliminarCotizacion:
+    path:  /cotizacion/eliminarCotizacion
+    defaults: { _controller: IcanBundle:Cotizacion:eliminar, _format: json }
+    
+eliminarCotizaciones:
+    path:  /cotizacion/eliminarCotizaciones
+    defaults: { _controller: IcanBundle:Cotizacion:eliminarCotizaciones, _format: json }
+ 
+salvarCotizacion:
+    path:  /cotizacion/salvarCotizacion
+    defaults: { _controller: IcanBundle:Cotizacion:salvar, _format: json }  
+   
+cargarDatosCotizacion:
+    path:  /cotizacion/cargarDatos
+    defaults: { _controller: IcanBundle:Cotizacion:cargarDatos, _format: json }
+
+eliminarProductoCotizacion:
+  path:  /cotizacion/eliminarProducto
+  defaults: { _controller: IcanBundle:Cotizacion:eliminarProducto, _format: json }
+
+descargarOrdenCotizacion:
+  path:  /cotizacion/descargar/orden/{cotizacion_id}
+  defaults: { _controller: IcanBundle:Cotizacion:descargarOrden }

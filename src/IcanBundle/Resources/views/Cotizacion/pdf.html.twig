@@ -1,0 +1,302 @@
+<!-- Core CSS - Include with every page -->
+<link href="{{ direccion_url }}/bundles/ican/css/pdf.css" rel="stylesheet" type="text/css"/>
+
+<page backtop="60px" backbottom="80px">
+    <page_header>
+        <div id="cabecera" class="container">
+            <div class="row text-center">
+                <img src="{{ direccion_url }}/bundles/ican/pdf/img/logo_mercury.png" width="143" height="50"
+                     alt=""/>
+            </div>
+        </div>
+    </page_header>
+    <page_footer>
+
+        <div id="footer" class="container centrado">
+            <div class="text-center">
+                <img src="{{ direccion_url }}/bundles/ican/pdf/img/logo_mercury_white.png" width="140" height="56"
+                     alt=""/>
+            </div>
+
+        </div>
+    </page_footer>
+
+
+    <!-- contenido -->
+    <div class="compra_ok_cont_title" style="margin-bottom: 20px;">Se ha realizado una compra</div>
+
+    <div class="titles">Datos Comercio</div>
+    <table class="table-info" width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+            <td bgcolor="#eeeeee" width="150">Comercio</td>
+            <td width="470">Ecommerce</td>
+        </tr>
+        <tr>
+            <td width="150">URL</td>
+            <td width="470" bgcolor="#eeeeee">
+                <a class="link" href="http://www.mercurymusic.cl/">www.ecommerce.cl</a>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#eeeeee" width="150">Servicio</td>
+            <td width="470">Venta de Productos</td>
+        </tr>
+    </table>
+    <br>
+    <div class="titles">Detalles de Productos</div>
+    <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+            <td class="celda-titulo" width="400">Nombre del productos</td>
+            <td class="celda-titulo" width="70">Cantidad</td>
+            <td class="celda-titulo" width="119">Valor</td>
+        </tr>
+    </table>
+    <table width="100%" cellpadding="0" cellspacing="0">
+        {% for item in cotizacion.productos %}
+        <tr>
+            <td bgcolor="#eeeeee" width="400">{{ item.nombre }}</td>
+            <td width="70">{{ item.cantidad }}</td>
+            <td bgcolor="#eeeeee" width="108">${{ (item.total) |number_format(0, ',', '.') }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <table width="100%" cellpadding="0" cellspacing="0">
+        {% if cotizacion.descuento > 0 %}
+        <tr>
+            <td width="513">Descuentos Aplicados</td>
+            <td bgcolor="#eeeeee" width="108">${{ (cotizacion.descuento) |number_format(0, ',', '.') }}</td>
+        </tr>
+        {% endif %}
+        {#
+        <tr>
+            <td bgcolor="#eeeeee" width="513">Despacho:<br>
+                {% if cotizacion.envio == 'retiroentienda' %}
+                    Retiro en Tienda
+                {% endif %}
+                {% if cotizacion.envio == 'chileexpress' %}
+                    Chilexpress
+                {% endif %}
+                {% if cotizacion.envio == 'correosdechile' %}
+                    Correos de Chile
+                {% endif %}
+            </td>
+            <td width="108">
+                ${{ (cotizacion.costo_envio) |number_format(0, ',', '.') }}
+            </td>
+        </tr>
+        #}
+    </table>
+
+    <br>
+    <!-- Tabla 2-->
+    <div class="titles">Datos de la Transacción</div>
+    <table class="table-info" width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+            <td bgcolor="#eeeeee" width="150">Nombre:</td>
+            <td colspan="3" width="470">{{ cotizacion.nombre }} {{ cotizacion.apellidos }}</td>
+        </tr>
+        <tr>
+            <td width="150">Fecha Transacción:</td>
+            <td bgcolor="#eeeeee" colspan="3" width="470">
+                {% if cotizacion.transaccion != false %}
+                    {{ cotizacion.transaccion.transactionDate }}
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#eeeeee">Tipo de Transacción:</td>
+            <td colspan="3">
+                {% if cotizacion.transaccion != false %}
+                    {% if cotizacion.transaccion.paymentTypeCode == 'VD' %}Débito{% else %}Crédito{% endif %}
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>Nro. Orden de Compra:</td>
+            <td bgcolor="#eeeeee" colspan="3">
+                {{ cotizacion.cotizacion_id }}
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#eeeeee">Tarjeta:</td>
+            <td colspan="3">
+                {% if cotizacion.transaccion != false %}
+                    XXXXXXXXXXXXX-{{ cotizacion.transaccion.cardNumber }}
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>Monto:</td>
+            <td bgcolor="#eeeeee">
+                {% if cotizacion.transaccion != false %}
+                    ${{ cotizacion.transaccion.amount |number_format(0, ',', '.') }}
+                {% endif %}
+            </td>
+            <td>Moneda:</td>
+            <td bgcolor="#eeeeee">$CH (pesos chilenos)</td>
+        </tr>
+        <tr>
+            <td bgcolor="#eeeeee">Nro. Transacción:</td>
+            <td colspan="3">
+                {% if cotizacion.transaccion != false %}
+                    {{ cotizacion.transaccion.transaccion_id }}
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>Código de Autorización:</td>
+            <td bgcolor="#eeeeee" colspan="3">
+                {% if cotizacion.transaccion != false %}
+                    {{ cotizacion.transaccion.authorizationCode }}
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#eeeeee">Cuotas:</td>
+            <td>
+                {% if cotizacion.transaccion != false %}
+                    {{ cotizacion.transaccion.sharesNumber }}
+                {% endif %}
+            </td>
+            <td bgcolor="#eeeeee">Tipo de Cuotas:</td>
+            <td>
+                {% if cotizacion.transaccion != false %}
+                    {% if cotizacion.transaccion.paymentTypeCode == 'VN' %}Sin Cuotas {% endif %}
+                    {% if cotizacion.transaccion.paymentTypeCode == 'VD' %}Débito{% endif %}
+                    {% if cotizacion.transaccion.paymentTypeCode == 'SI' %}Sin Interés{% endif %}
+                    {% if cotizacion.transaccion.paymentTypeCode == 'S2' %}Sin Interés{% endif %}
+                    {% if cotizacion.transaccion.paymentTypeCode == 'NC' %}Sin Interés{% endif %}
+                    {% if cotizacion.transaccion.paymentTypeCode == 'VC' %}Cuotas Normales{% endif %}
+                {% endif %}
+            </td>
+
+        </tr>
+        {#
+        <tr>
+            <td>Código de Seguridad:</td>
+            <td bgcolor="#eeeeee" colspan="3">
+                {% if cotizacion.transaccion != false %}
+                    {{ cotizacion.transaccion.token }}
+                {% endif %}
+            </td>
+        </tr>
+        #}
+    </table>
+
+    {#
+
+    <br>
+    <div class="titles">Entrega</div>
+    <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+            <td width="150" bgcolor="#eeeeee">Transporte</td>
+            <td width="470">
+                {% if cotizacion.envio == 'retiroentienda' %}
+                    Retiro en Tienda
+                {% endif %}
+                {% if cotizacion.envio == 'chileexpress' %}
+                    Chilexpress
+                {% endif %}
+                {% if cotizacion.envio == 'correosdechile' %}
+                    Correos de Chile
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td width="150">Pago</td>
+            <td width="470" bgcolor="#eeeeee">Webpay</td>
+        </tr>
+    </table>
+    <br>
+
+
+    <div class="cuadro-info">
+        <div class="titles">Dirección de Entrega</div>
+
+        <table width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <td width="150">Persona de contacto</td>
+                <td width="470" bgcolor="#eeeeee">
+                    {% if cotizacion.receptor_nombre!= "" %}
+                        {{ cotizacion.receptor_nombre }}
+                    {% else %}
+                        {{ cotizacion.nombreCompleto }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td width="150" bgcolor="#eeeeee">Dirección</td>
+                <td width="470">
+                    {% if cotizacion.receptor_nombre!= "" %}
+                        {{ cotizacion.receptor_calle }} #{{ cotizacion.receptor_numero }}
+                    {% else %}
+                        {{ cotizacion.calle }} #{{ cotizacion.numero }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td width="150">Comuna</td>
+                <td width="470" bgcolor="#eeeeee">
+                    {% if cotizacion.receptor_nombre!= "" %}
+                        {{ cotizacion.receptor_comuna_nombre }}
+                    {% else %}
+                        {{ cotizacion.comuna }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td width="150" bgcolor="#eeeeee">Región</td>
+                <td width="470">
+                    {% if cotizacion.receptor_nombre!= "" %}
+                        {{ cotizacion.receptor_region_nombre }}
+                    {% else %}
+                        {{ cotizacion.region }}
+                    {% endif %}
+                </td>
+            </tr>
+
+            <tr>
+                <td width="150">Observación</td>
+                <td width="470" bgcolor="#eeeeee">
+                    {{ cotizacion.comentario }}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br>
+
+    {% if cotizacion.factura_rut != "" %}
+        <div class="cuadro-info-2">
+            <div class="titles">Información de facturación</div>
+            <table width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="150" bgcolor="#eeeeee">Razón Social</td>
+                    <td width="470">{{ cotizacion.factura_razon }}</td>
+                </tr>
+                <tr>
+                    <td width="150">Rut Empresa</td>
+                    <td width="470" bgcolor="#eeeeee">{{ cotizacion.factura_rut }}</td>
+                </tr>
+                <tr>
+                    <td width="150" bgcolor="#eeeeee">Giro</td>
+                    <td width="470">{{ cotizacion.factura_giro }}</td>
+                </tr>
+                <tr>
+                    <td width="150">Dirección</td>
+                    <td width="470" bgcolor="#eeeeee">
+                        {{ cotizacion.factura_direccion }}
+                    </td>
+                </tr>
+                <tr>
+                    <td width="150" bgcolor="#eeeeee">Teléfono</td>
+                    <td width="470">
+                        {{ cotizacion.factura_telefono }}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    {% endif %}
+    #}
+
+</page>
+

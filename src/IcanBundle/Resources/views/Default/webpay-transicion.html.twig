@@ -1,0 +1,18 @@
+<html>
+<head>
+    <title>Redireccionando a Webpay</title>
+</head>
+<body>
+<form id="webpayForm" method="post" action="{{ url }}">
+    <input type="hidden" name="token_ws" value="{{ token }}"/>
+
+    <noscript>
+        Haz clic en continuar para reenviar a Webpay
+        <input type="submit" name="submit" value="Continuar"/>
+    </noscript>
+</form>
+<script type="text/javascript" language="javascript">
+    document.forms["webpayForm"].submit();
+</script>
+</body>
+</html>

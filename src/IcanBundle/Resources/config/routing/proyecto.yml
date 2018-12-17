@@ -1,0 +1,31 @@
+proyecto:
+  path:  /proyecto
+  defaults: { _controller: IcanBundle:Proyecto:index }
+
+listarProyecto:
+  path:  /proyecto/listarProyecto
+  defaults: { _controller: IcanBundle:Proyecto:listar, _format: json }
+
+eliminarProyecto:
+  path:  /proyecto/eliminarProyecto
+  defaults: { _controller: IcanBundle:Proyecto:eliminar, _format: json }
+
+eliminarProyectos:
+  path:  /proyecto/eliminarProyectos
+  defaults: { _controller: IcanBundle:Proyecto:eliminarProyectos, _format: json }
+
+salvarProyecto:
+  path:  /proyecto/salvarProyecto
+  defaults: { _controller: IcanBundle:Proyecto:salvar, _format: json }
+
+salvarImagenProyecto:
+  path:  /proyecto/salvarImagen
+  defaults: { _controller: IcanBundle:Proyecto:salvarImagen, _format: json }
+
+eliminarImagenProyecto:
+  path:  /proyecto/eliminarImagen
+  defaults: { _controller: IcanBundle:Proyecto:eliminarImagen, _format: json }
+
+cargarDatosProyecto:
+  path:  /proyecto/cargarDatos
+  defaults: { _controller: IcanBundle:Proyecto:cargarDatos, _format: json }

@@ -1,0 +1,28 @@
+IcanBundle\Entity\Termino:
+  type: entity
+  repositoryClass: IcanBundle\Entity\TerminoRepository
+  table: termino
+  id:
+    terminoId:
+      type: integer
+      nullable: false
+      options:
+        unsigned: false
+      id: true
+      column: termino_id
+      generator:
+        strategy: AUTO
+  fields:
+    titulo:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: true
+    descripcion:
+      type: text
+      nullable: false
+    tags:
+      type: text
+      nullable: false
+  lifecycleCallbacks: {  }

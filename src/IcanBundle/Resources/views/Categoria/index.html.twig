@@ -1,0 +1,426 @@
+{% extends 'IcanBundle::layout.html.twig' %}
+
+{% block subtitle %} - Categorías y Subcategorías{% endblock %}
+
+{% block stylesheetspecific %}
+    <link href="{{ asset('bundles/ican/plugins/jquery-tags-input/jquery.tagsinput.css') }}" rel="stylesheet"
+          type="text/css"/>
+{% endblock %}
+
+{% block content %}
+    <!-- BEGIN: Subheader -->
+    <div class="m-subheader ">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto">
+                <h3 class="m-subheader__title m-subheader__title--separator">Dashboard</h3>
+                <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                    <li class="m-nav__item m-nav__item--home">
+                        <a href="{{ url('home') }}" class="m-nav__link m-nav__link--icon">
+                            <i class="m-nav__link-icon la la-home"></i>
+                        </a>
+                    </li>
+                    <li class="m-nav__separator">-</li>
+                    <li class="m-nav__item">
+                        <a href="" class="m-nav__link">
+                            <span class="m-nav__link-text">Categorías y Subcategorías</span>
+                        </a>
+                    </li>
+                    <li class="m-nav__separator">-</li>
+                    <li class="m-nav__item">
+                        <a href="" class="m-nav__link">
+                            <span class="m-nav__link-text">Administre las categorías y subcategorías</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- END: Subheader -->
+
+    <div class="m-content">
+        <div id="div-arbol-categoria" class="m-portlet m-portlet--mobile" m-portlet="true">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text">
+                            Categorías
+                        </h3>
+                    </div>
+                </div>
+                <div class="m-portlet__head-tools">
+                    <ul class="m-portlet__nav">
+                        <li class="m-portlet__nav-item">
+                            <a href="javascript:;" m-portlet-tool="fullscreen"
+                               class="m-portlet__nav-link m-portlet__nav-link--icon">
+                                <i class="la la-expand"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="m-portlet__body">
+                <!--begin: Search Form -->
+                <div class="m-form m-form--label-align-right m--margin-top-10 m--margin-bottom-10">
+                    <div class="row align-items-center">
+                        <div class="col-xl-12 order-1">
+                            <div class="form-group m-form__group row align-items-center">
+                                <div class="col-md-8"></div>
+                                <div class="col-md-4">
+                                    <div class="m-input-icon m-input-icon--left">
+                                        <input id="buscar-input" type="text" class="form-control m-input m_form_search"
+                                               placeholder="Buscar...">
+                                        <span class="m-input-icon__icon m-input-icon__icon--left">
+									<span><i class="la la-search"></i></span>
+								</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!--end: Search Form -->
+
+                <div class="row">
+                    <div class="col-md-5" id="form-categoria">
+                        <div class="m-portlet">
+                            <div class="m-portlet__head">
+                                <div class="m-portlet__head-caption">
+                                    <div class="m-portlet__head-title">
+                                        <h3 class="m-portlet__head-text" id="form-categoria-title">
+                                            ¿Qué deseas crear?
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div class="m-portlet__head-tools">
+                                </div>
+                            </div>
+
+                            <div id="form-toolbar" class="form-group m-form__group m--margin-15 m--padding-bottom-15">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="btn-group m-btn-group" role="group" aria-label="...">
+
+                                            <button type="button"
+                                                    class="btn btn-secondary"
+                                                    id="btn-nuevo-categoria">
+                                                Categoría
+                                            </button>
+                                            <button type="button" class="btn btn-secondary"
+                                                    id="btn-nuevo-subcategoria">
+                                                Subcategoría
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <form class="m--hide m-form" id="categoria-form" action="#"
+                                  enctype="multipart/form-data" method="post">
+
+                                <div class="" style="padding: 1.2rem 2.2rem;color: #575962;">
+                                    <div class="m-form__section m-form__section--first">
+
+                                        <div id="form-group-categoria" class="form-group m-form__group">
+                                            <label>
+                                                Selecciona la categoría a la que pertenece esta nueva
+                                                subcategoría
+                                                <span class="ic-small italic">(obligatorio)</span>
+                                            </label>
+                                            <div class="row">
+                                                <div class="col-md-12" id="select-categoria">
+                                                    <select class="form-control m-select2 event-change"
+                                                            id="categoria" name="categoria">
+                                                        <option value="">Seleccione la categoría</option>
+                                                        {% for item in categorias %}
+                                                            <option value="{{ item.categoria_id }}"
+                                                                    class="{{ item.class }}">{{ item.descripcion }}
+                                                            </option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group m-form__group">
+                                            <label>
+                                                Ingrese el nombre de la categoría o subcategoría que deseas crear
+                                                <span class="ic-small italic">(obligatorio)</span>
+                                            </label>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="text"
+                                                           class="form-control form-control-text event-change"
+                                                           id="nombre" name="nombre"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group m-form__group">
+                                            <label>Define el estado de la categoría o subcategoría que deseas
+                                                crear</label>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="m-form__group form-group">
+                                                        <div class="m-radio-inline">
+                                                            <label class="m-radio">
+                                                                <input type="radio" name="radioestado" id="estadoactivo"
+                                                                       checked class="event-change">
+                                                                Activo
+                                                                <span></span>
+                                                            </label>
+                                                            <label class="m-radio">
+                                                                <input type="radio" name="radioestado"
+                                                                       id="estadoinactivo" class="event-change">
+                                                                Inactivo
+                                                                <span></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-1x"></div>
+                                        <h3 class="m-form__section" style="margin: 10px 0 10px 0;">
+                                            Seo on Page
+                                        </h3>
+                                        <div class="form-group m-form__group">
+                                            <label>
+                                                Título
+                                                <span class="ic-small italic">(obligatorio)</span>
+                                            </label>
+                                            <p class="m-form__help">Este título se incrustará en los META de la página
+                                                con el
+                                                listado de productos de la categoría, permitiendo optimizar la busqueda
+                                                de los
+                                                buscadores.</p>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="text"
+                                                           class="form-control form-control-text event-change"
+                                                           id="titulo" name="titulo"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group m-form__group">
+                                            <label>
+                                                Descripción
+                                                <span class="ic-small italic">(obligatorio) Max. 160 caracteres</span>
+                                            </label>
+                                            <p class="m-form__help">La descripción te ayuda a mostrar información
+                                                adicional sobre
+                                                tu categoría / subcategoría. Se incrustará en los META de la página con
+                                                el
+                                                listado de productos de la categoría, permitiendo optimizar la busqueda
+                                                de los
+                                                buscadores.</p>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <textarea class="form-control event-change" id="descripcion"
+                                                              name="descripcion"
+                                                              rows="4"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group m-form__group">
+                                            <label>
+                                                Palabras claves
+                                                <span class="ic-small italic">(obligatorio)</span>
+                                            </label>
+                                            <p class="m-form__help">Estos tags se incrustarán en los META de la página
+                                                con el
+                                                listado de productos de la categoría, permitiendo optimizar la busqueda
+                                                de los
+                                                buscadores.</p>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="text" class="form-control tags event-change" id="tags"
+                                                           name="tags"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="m-form__actions">
+                                        <button id="btn-salvar-categoria" class="btn btn-success" type="button">
+                                            Guardar
+                                        </button>
+                                        <button class="btn btn-danger cerrar-form-categoria" type="button">
+                                            Cancelar
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="m-portlet">
+                            <div class="m-portlet__head">
+                                <div class="m-portlet__head-caption">
+                                    <div class="m-portlet__head-title">
+                                        <h3 class="m-portlet__head-text">
+                                            Clickea la categoría o subcategoría que deseas editar o eliminar
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div class="m-portlet__head-tools">
+                                </div>
+                            </div>
+
+                            <div class="" style="padding: 1.2rem 2.2rem;color: #575962;">
+                                <div id="arbol-categoria"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modal-editar-categoria" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Editar categoría o subcategoría</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="m-scrollable" data-scrollbar-shown="true" data-scrollable="true"
+                             data-height="400" data-mobile-height="300">
+                            <form class="m-form" id="editar-categoria-form" action="#"
+                                  enctype="multipart/form-data" method="post">
+
+                                <input type="hidden" id="categoria_id" name="categoria_id"/>
+
+                                <div class="m-portlet__body">
+                                    <div class="form-group m-form__group">
+                                        <label>
+                                            Ingrese el nombre de la categoría o subcategoría que deseas crear
+                                            <span class="ic-small italic">(obligatorio)</span>
+                                        </label>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <input type="text" class="form-control form-control-text event-change"
+                                                       id="nombre-editar" name="nombre"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group">
+                                        <label>Define el estado de la categoría o subcategoría que deseas crear</label>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="m-form__group form-group">
+                                                    <div class="m-radio-inline">
+                                                        <label class="m-radio">
+                                                            <input type="radio" name="radioestado"
+                                                                   id="estadoactivo-editar"
+                                                                   checked class="event-change">
+                                                            Activo
+                                                            <span></span>
+                                                        </label>
+                                                        <label class="m-radio">
+                                                            <input type="radio" name="radioestado"
+                                                                   id="estadoinactivo-editar" class="event-change">
+                                                            Inactivo
+                                                            <span></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="m-form__seperator m-form__seperator--dashed m-form__seperator--space-1x"></div>
+                                    <h3 class="m-form__section" style="margin: 10px 0 10px 0;">
+                                        Seo on Page
+                                    </h3>
+                                    <div class="form-group m-form__group">
+                                        <label>
+                                            Título
+                                            <span class="ic-small italic">(obligatorio)</span>
+                                        </label>
+                                        <p class="m-form__help">Este título se incrustará en los META de la página con
+                                            el
+                                            listado de productos de la categoría, permitiendo optimizar la busqueda de
+                                            los
+                                            buscadores.</p>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <input type="text" class="form-control form-control-text event-change"
+                                                       id="titulo-editar" name="titulo"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group">
+                                        <label>
+                                            Descripción
+                                            <span class="ic-small italic">(obligatorio) Max. 160 caracteres</span>
+                                        </label>
+                                        <p class="m-form__help">La descripción te ayuda a mostrar información adicional
+                                            sobre
+                                            tu categoría / subcategoría. Se incrustará en los META de la página con el
+                                            listado de productos de la categoría, permitiendo optimizar la busqueda de
+                                            los
+                                            buscadores.</p>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                    <textarea class="form-control event-change" id="descripcion-editar"
+                                                              name="descripcion"
+                                                              rows="4"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group">
+                                        <label>
+                                            Palabras claves
+                                            <span class="ic-small italic">(obligatorio)</span>
+                                        </label>
+                                        <p class="m-form__help">Estos tags se incrustarán en los META de la página con
+                                            el
+                                            listado de productos de la categoría, permitiendo optimizar la busqueda de
+                                            los
+                                            buscadores.</p>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <input type="text" class="form-control tags event-change"
+                                                       id="tags-editar" name="tags"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+
+                        <button id="btn-actualizar-categoria" class="btn btn-success"
+                                type="button">
+                            Guardar cambios
+                        </button>
+                        <button id="btn-eliminar-categoria" class="btn btn-danger"
+                                type="button">
+                            Eliminar categoría o subcategoría
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block javascriptsspecific %}
+
+    <script src="{{ asset('bundles/ican/plugins/jquery-tags-input/jquery.tagsinput.min.js') }}"></script>
+    <script src="{{ asset('bundles/ican/js/pages/categorias.js') }}"></script>
+    <script>
+        jQuery(document).ready(function () {
+            Categorias.init();
+        });
+    </script>
+{% endblock %}

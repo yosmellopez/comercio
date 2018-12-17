@@ -1,0 +1,52 @@
+IcanBundle\Entity\Marca:
+  type: entity
+  repositoryClass: IcanBundle\Entity\MarcaRepository
+  table: marca
+  id:
+    marcaId:
+      type: integer
+      nullable: false
+      options:
+        unsigned: false
+      id: true
+      column: marca_id
+      generator:
+        strategy: AUTO
+  fields:
+    nombre:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: false
+    titulo:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: true
+    descripcion:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: true
+    tags:
+      type: text
+      nullable: false
+    estado:
+      type: boolean
+      nullable: true
+    imagen:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: true
+    url:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: true
+  lifecycleCallbacks: {  }

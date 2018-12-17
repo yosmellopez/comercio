@@ -1,0 +1,37 @@
+IcanBundle\Entity\ProductoImagen:
+  type: entity
+  repositoryClass: IcanBundle\Entity\ProductoImagenRepository
+  table: producto_imagen
+  indexes:
+    Ref35:
+      columns:
+      - producto_id
+  id:
+    productoimagenId:
+      type: integer
+      nullable: false
+      options:
+        unsigned: false
+      id: true
+      column: productoimagen_id
+      generator:
+        strategy: AUTO
+  fields:
+    imagen:
+      type: string
+      nullable: true
+      length: 255
+      options:
+        fixed: false
+  manyToOne:
+    producto:
+      targetEntity: Producto
+      cascade: {  }
+      fetch: LAZY
+      # mappedBy: null
+      inversedBy: imagenes
+      joinColumns:
+        producto_id:
+          referencedColumnName: producto_id
+      orphanRemoval: false
+  lifecycleCallbacks: {  }

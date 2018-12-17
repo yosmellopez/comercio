@@ -1,0 +1,23 @@
+area:
+  path:  /areas
+  defaults: { _controller: IcanBundle:Area:index }
+
+listarArea:
+  path:  /area/listarArea
+  defaults: { _controller: IcanBundle:Area:listar, _format: json }
+
+eliminarArea:
+  path:  /area/eliminarArea
+  defaults: { _controller: IcanBundle:Area:eliminar, _format: json }
+
+eliminarAreas:
+  path:  /area/eliminarAreas
+  defaults: { _controller: IcanBundle:Area:eliminarAreas, _format: json }
+
+salvarArea:
+  path:  /area/salvarArea
+  defaults: { _controller: IcanBundle:Area:salvar, _format: json }
+
+cargarDatosArea:
+  path:  /area/cargarDatos
+  defaults: { _controller: IcanBundle:Area:cargarDatos, _format: json }

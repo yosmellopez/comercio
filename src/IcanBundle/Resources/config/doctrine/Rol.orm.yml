@@ -1,0 +1,22 @@
+IcanBundle\Entity\Rol:
+  type: entity
+  repositoryClass: IcanBundle\Entity\RolRepository
+  table: rol
+  id:
+    rolId:
+      type: integer
+      nullable: false
+      options:
+        unsigned: false
+      id: true
+      column: rol_id
+      generator:
+        strategy: AUTO
+  fields:
+    nombre:
+      type: string
+      nullable: false
+      length: 255
+      options:
+        fixed: false
+  lifecycleCallbacks: {  }

@@ -1,0 +1,51 @@
+IcanBundle\Entity\UsuarioInfo:
+  type: entity
+  repositoryClass: IcanBundle\Entity\UsuarioInfoRepository
+  table: usuario_info
+  id:
+    infoId:
+      type: integer
+      nullable: false
+      options:
+        unsigned: false
+      id: true
+      column: info_id
+      generator:
+        strategy: AUTO
+  fields:
+    rut:
+      type: string
+      nullable: false
+      length: 255
+      options:
+        fixed: false
+    telefono:
+      type: string
+      nullable: false
+      length: 255
+      options:
+        fixed: false
+    calle:
+      type: string
+      nullable: false
+      length: 255
+      options:
+        fixed: false
+    numero:
+      type: string
+      nullable: false
+      length: 255
+      options:
+        fixed: false
+  manyToOne:
+    usuario:
+      targetEntity: IcanBundle\Entity\Usuario
+      cascade: {  }
+      fetch: LAZY
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        usuario_id:
+          referencedColumnName: usuario_id
+      orphanRemoval: false
+  lifecycleCallbacks: {  }

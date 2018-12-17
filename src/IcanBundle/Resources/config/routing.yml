@@ -1,0 +1,70 @@
+home:
+  path:  /
+  defaults: { _controller: IcanBundle:Default:index }
+
+testwebpay:
+  path:  /test-webpay
+  defaults: { _controller: IcanBundle:Default:testwebpay }
+
+testwebpaytransicion:
+  path:  /test-webpay-transicion
+  defaults: { _controller: IcanBundle:Default:testwebpaytransicion }
+
+testwebpayresult:
+  path:  /test-webpay-result
+  defaults: { _controller: IcanBundle:Default:testwebpayresult }
+
+testwebpayfinal:
+  path:  /test-webpay-final
+  defaults: { _controller: IcanBundle:Default:testwebpayfinal }
+
+_usuario:
+  resource: "@IcanBundle/Resources/config/routing/usuario.yml"
+
+_perfil:
+  resource: "@IcanBundle/Resources/config/routing/perfil.yml"
+
+_redsocial:
+  resource: "@IcanBundle/Resources/config/routing/redsocial.yml"
+
+_mensaje:
+  resource: "@IcanBundle/Resources/config/routing/mensaje.yml"
+
+_seo_on_page:
+  resource: "@IcanBundle/Resources/config/routing/seo_on_page.yml"
+
+_newsletter:
+  resource: "@IcanBundle/Resources/config/routing/newsletter.yml"
+
+_slider:
+  resource: "@IcanBundle/Resources/config/routing/slider.yml"
+
+_categoria:
+  resource: "@IcanBundle/Resources/config/routing/categoria.yml"
+
+_marca:
+  resource: "@IcanBundle/Resources/config/routing/marca.yml"
+
+_producto:
+  resource: "@IcanBundle/Resources/config/routing/producto.yml"
+
+_cotizacion:
+  resource: "@IcanBundle/Resources/config/routing/cotizacion.yml"
+
+_termino:
+  resource: "@IcanBundle/Resources/config/routing/termino.yml"
+
+_porciento:
+  resource: "@IcanBundle/Resources/config/routing/porciento.yml"
+
+_promocion:
+  resource: "@IcanBundle/Resources/config/routing/promocion.yml"
+
+_descuento:
+  resource: "@IcanBundle/Resources/config/routing/descuento.yml"
+
+_webpayconfig:
+  resource: "@IcanBundle/Resources/config/routing/webpayconfig.yml"
+
+_transaccionwebpay:
+  resource: "@IcanBundle/Resources/config/routing/transaccionwebpay.yml"

@@ -1,0 +1,23 @@
+rol:
+    path:  /perfiles
+    defaults: { _controller: IcanBundle:Perfil:index }
+    
+listarRol:
+    path:  /perfil/listarPerfil
+    defaults: { _controller: IcanBundle:Perfil:listar, _format: json }
+
+eliminarRol:
+    path:  /perfil/eliminarPerfil
+    defaults: { _controller: IcanBundle:Perfil:eliminar, _format: json }
+    
+eliminarRoles:
+    path:  /perfil/eliminarPerfiles
+    defaults: { _controller: IcanBundle:Perfil:eliminarPerfiles, _format: json }
+ 
+salvarRol:
+    path:  /perfil/salvarPerfil
+    defaults: { _controller: IcanBundle:Perfil:salvar, _format: json }
+
+cargarDatosPerfil:
+  path:  /perfil/cargarDatos
+  defaults: { _controller: IcanBundle:Perfil:cargarDatos, _format: json }

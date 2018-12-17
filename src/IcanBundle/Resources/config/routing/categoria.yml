@@ -1,0 +1,19 @@
+categoria:
+  path:  /categorias
+  defaults: { _controller: IcanBundle:Categoria:index }
+  
+listarCategoria:
+  path:  /categoria/listarCategoria
+  defaults: { _controller: IcanBundle:Categoria:listar, _format: json }
+
+eliminarCategoria:
+  path:  /categoria/eliminarCategoria
+  defaults: { _controller: IcanBundle:Categoria:eliminar, _format: json }
+
+salvarCategoria:
+  path:  /categoria/salvarCategoria
+  defaults: { _controller: IcanBundle:Categoria:salvar, _format: json }
+
+cargarDatosCategoria:
+  path:  /categoria/cargarDatos
+  defaults: { _controller: IcanBundle:Categoria:cargarDatos, _format: json }

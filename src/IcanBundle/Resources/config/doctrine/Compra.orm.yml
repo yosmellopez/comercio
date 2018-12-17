@@ -1,0 +1,53 @@
+IcanBundle\Entity\Compra:
+  type: entity
+  repositoryClass: IcanBundle\Entity\CompraRepository
+  table: compra
+  id:
+    compraId:
+      type: integer
+      nullable: false
+      options:
+        unsigned: false
+      id: true
+      column: compra_id
+      generator:
+        strategy: AUTO
+  fields:
+    monto:
+      type: float
+      options:
+        fixed: false
+      nullable: false
+    descripcion:
+      type: text
+      nullable: false
+    estado:
+      type: boolean
+      nullable: true
+    fechaCompra:
+      type: datetime
+      nullable: true
+      column: fecha_compra
+  manyToOne:
+    usuario:
+      targetEntity: Usuario
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        usuario_id:
+          referencedColumnName: usuario_id
+      orphanRemoval: false
+  manyToMany:
+    productos:
+      targetEntity: Producto
+      joinTable:
+        name: compra_productos
+        joinColumns:
+          compra_id:
+            referencedColumnName: compra_id
+        inverseJoinColumns:
+          producto_id:
+            referencedColumnName: producto_id
+        orphanRemoval: false
+  lifecycleCallbacks: {  }

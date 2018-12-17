@@ -1,0 +1,68 @@
+IcanBundle\Entity\Usuario:
+  type: entity
+  repositoryClass: IcanBundle\Entity\UsuarioRepository
+  table: usuario
+  indexes:
+    Ref156:
+      columns:
+      - rol_id
+  uniqueConstraints:
+    unique_email:
+      columns:
+      - email
+  id:
+    usuarioId:
+      type: integer
+      nullable: false
+      options:
+        unsigned: false
+      id: true
+      column: usuario_id
+      generator:
+        strategy: AUTO
+  fields:
+    nombre:
+      type: string
+      nullable: false
+      length: 255
+      options:
+        fixed: false
+    apellidos:
+      type: string
+      nullable: false
+      length: 255
+      options:
+        fixed: false
+    email:
+      type: string
+      nullable: false
+      length: 50
+      options:
+        fixed: false
+    password:
+      type: string
+      nullable: false
+      length: 255
+      options:
+        fixed: false
+    habilitado:
+      type: boolean
+      nullable: true
+    fecharegistro:
+      type: datetime
+      nullable: true
+    fechaultimologin:
+      type: datetime
+      nullable: true
+  manyToOne:
+    rol:
+      targetEntity: Rol
+      cascade: {  }
+      fetch: LAZY
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        rol_id:
+          referencedColumnName: rol_id
+      orphanRemoval: false
+  lifecycleCallbacks: {  }

@@ -1,0 +1,7 @@
+webpayconfig:
+    path:  /webpay-configuracion
+    defaults: { _controller: IcanBundle:WebpayConfig:index }
+
+salvarWebpayConfig:
+    path:  /webpayconfig/salvar
+    defaults: { _controller: IcanBundle:WebpayConfig:salvar, _format: json }

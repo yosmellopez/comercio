@@ -1,0 +1,45 @@
+
+.navbar-menu-principal {
+    border-bottom: 1px solid #222;
+}
+
+.navbar-menu-categorias {
+    border-bottom: 4px solid #c52d2f;
+}
+
+.navbar{
+    padding: 0px;
+    min-height: 0px;
+}
+.navbar-nav{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.navbar-nav>li {
+    margin-left: 25px;
+    padding-bottom: 10px;
+}
+
+@media (min-width: 768px) {
+    .nav-center {
+        display: inline-block;
+        left: 0;
+        right: 0;
+        text-align: center;
+        width: 100%;
+    }
+
+    .nav-center li, .nav-center li a {
+        display: inline;
+        float: none;
+    }
+
+    .dropdown-menu > li {
+        display: inline-block !important;
+        width: 100%;
+    }
+    .dropdown-menu > li > a{
+        display: block !important;
+        text-align: left;
+    }
+}

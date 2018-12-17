@@ -1,0 +1,71 @@
+IcanBundle\Entity\Promocion:
+  type: entity
+  repositoryClass: IcanBundle\Entity\PromocionRepository
+  table: promocion
+  id:
+    promocionId:
+      type: integer
+      nullable: false
+      options:
+        unsigned: false
+      id: true
+      column: promocion_id
+      generator:
+        strategy: AUTO
+  fields:
+    codigo:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: false
+    nombre:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: false
+    titulo:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: true
+    descripcion:
+      type: text
+      nullable: false
+    tags:
+      type: text
+      nullable: false
+    imagen:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: true
+    estado:
+      type: boolean
+      nullable: true
+    fechainicio:
+      type: datetime
+      nullable: true
+    fechafin:
+      type: datetime
+      nullable: true
+    url:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: true
+  manyToOne:
+    porciento:
+      targetEntity: IcanBundle\Entity\Porciento
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        porciento_id:
+          referencedColumnName: porciento_id
+      orphanRemoval: false
+  lifecycleCallbacks: {  }

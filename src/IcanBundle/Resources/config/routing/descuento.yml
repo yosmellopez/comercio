@@ -1,0 +1,31 @@
+descuento:
+  path:  /descuento
+  defaults: { _controller: IcanBundle:Descuento:index }
+
+listarDescuento:
+  path:  /descuento/listarDescuento
+  defaults: { _controller: IcanBundle:Descuento:listar, _format: json }
+
+salvarDescuento:
+  path:  /descuento/salvarDescuento
+  defaults: { _controller: IcanBundle:Descuento:salvar, _format: json }
+
+cargarDatosDescuento:
+  path:  /descuento/cargarDatos
+  defaults: { _controller: IcanBundle:Descuento:cargarDatos, _format: json }
+
+eliminarDescuento:
+  path:  /descuento/eliminarDescuento
+  defaults: { _controller: IcanBundle:Descuento:eliminar, _format: json }
+
+eliminarDescuentos:
+  path:  /descuento/eliminarDescuentos
+  defaults: { _controller: IcanBundle:Descuento:eliminarDescuentos, _format: json }
+
+listarUsosDescuento:
+  path:  /descuento/listarUsos
+  defaults: { _controller: IcanBundle:Descuento:listarUsos, _format: json }
+
+eliminarProductoDescuento:
+  path:  /descuento/eliminarProducto
+  defaults: { _controller: IcanBundle:Descuento:eliminarProducto, _format: json }

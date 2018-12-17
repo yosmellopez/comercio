@@ -1,0 +1,28 @@
+IcanBundle\Entity\Newsletter:
+  type: entity
+  repositoryClass: IcanBundle\Entity\NewsletterRepository
+  table: newsletter
+  id:
+    newsletterId:
+      type: integer
+      nullable: false
+      options:
+        unsigned: false
+      id: true
+      column: newsletter_id
+      generator:
+        strategy: AUTO
+  fields:
+    email:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: false
+    estado:
+      type: boolean
+      nullable: true
+    fecha:
+      type: datetime
+      nullable: true
+  lifecycleCallbacks: {  }

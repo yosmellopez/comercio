@@ -1,0 +1,47 @@
+IcanBundle\Entity\Descuento:
+  type: entity
+  repositoryClass: IcanBundle\Entity\DescuentoRepository
+  table: descuento
+  id:
+    descuentoId:
+      type: integer
+      nullable: false
+      options:
+        unsigned: false
+      id: true
+      column: descuento_id
+      generator:
+        strategy: AUTO
+  fields:
+    codigo:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: false
+    nombre:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: false
+    estado:
+      type: boolean
+      nullable: true
+    fechainicio:
+      type: datetime
+      nullable: true
+    fechafin:
+      type: datetime
+      nullable: true
+  manyToOne:
+    porciento:
+      targetEntity: IcanBundle\Entity\Porciento
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        porciento_id:
+          referencedColumnName: porciento_id
+      orphanRemoval: false
+  lifecycleCallbacks: {  }

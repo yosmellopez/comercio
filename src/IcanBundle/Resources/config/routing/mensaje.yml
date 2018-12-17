@@ -1,0 +1,23 @@
+mensaje:
+    path:  /mensajes
+    defaults: { _controller: IcanBundle:Mensaje:index }
+    
+listarMensaje:
+    path:  /mensaje/listarMensaje
+    defaults: { _controller: IcanBundle:Mensaje:listar, _format: json }
+
+eliminarMensaje:
+    path:  /mensaje/eliminarMensaje
+    defaults: { _controller: IcanBundle:Mensaje:eliminar, _format: json }
+    
+eliminarMensajes:
+    path:  /mensaje/eliminarMensajes
+    defaults: { _controller: IcanBundle:Mensaje:eliminarMensajes, _format: json }
+ 
+salvarMensaje:
+    path:  /mensaje/salvarMensaje
+    defaults: { _controller: IcanBundle:Mensaje:salvar, _format: json }  
+   
+cargarDatosMensaje:
+    path:  /mensaje/cargarDatos
+    defaults: { _controller: IcanBundle:Mensaje:cargarDatos, _format: json }

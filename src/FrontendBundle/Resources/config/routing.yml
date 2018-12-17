@@ -1,0 +1,57 @@
+homefrontend:
+    path:  /
+    defaults: { _controller: FrontendBundle:Default:index }  
+    
+error404:
+    path:  /pagina-no-encontrada
+    defaults: { _controller: FrontendBundle:Default:error404 }
+
+contacto:
+    path:  /contactenos
+    defaults: { _controller: FrontendBundle:Default:contacto }        
+    
+procesarcontacto:
+    path:  /contacto/procesarContacto
+    defaults: { _controller: FrontendBundle:Default:procesarcontacto }
+
+quienessomos:
+    path:  /quienes-somos
+    defaults: { _controller: FrontendBundle:Default:quienessomos }
+
+servicios:
+    path:  /servicios
+    defaults: { _controller: FrontendBundle:Default:servicios }
+
+listadoproductos:
+    path:  /productos/{page}
+    defaults: { _controller: FrontendBundle:Producto:index, page: 1 }
+    requirements:
+        page:  \d+
+
+listadoproductoscategoria:
+    path:  /productos/{categoria}/{page}
+    defaults: { _controller: FrontendBundle:Producto:productoscategoria, page: 1, categoria: '' }
+    requirements:
+        page:  \d+
+
+listadoproductosmarca:
+    path:  /productos/marca/{marca}/{page}
+    defaults: { _controller: FrontendBundle:Producto:productosmarca, page: 1, marca: '' }
+    requirements:
+        page:  \d+
+
+productodetalle:
+    path: /plan/{url}
+    defaults: { _controller: FrontendBundle:Producto:detalle }
+
+registro:
+    path: /register
+    defaults: { _controller: FrontendBundle:Default:registro }
+
+procesar_registro:
+    path:  /registro/procesar
+    defaults: { _controller: FrontendBundle:Default:procesar, _format: json }
+
+complete_registro:
+    path:  /register-complete
+    defaults: { _controller: FrontendBundle:Default:complete }

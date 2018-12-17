@@ -1,0 +1,56 @@
+IcanBundle\Entity\Categoria:
+  type: entity
+  repositoryClass: IcanBundle\Entity\CategoriaRepository
+  table: categoria
+  id:
+    categoriaId:
+      type: integer
+      nullable: false
+      options:
+        unsigned: false
+      id: true
+      column: categoria_id
+      generator:
+        strategy: AUTO
+  fields:
+    nombre:
+      type: string
+      length: 255
+      nullable: false
+      options:
+        fixed: false
+    titulo:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: true
+    descripcion:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: true
+    tags:
+      type: text
+      nullable: false
+    url:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: true
+    estado:
+      type: boolean
+      nullable: true
+  manyToOne:
+    categoriaPadre:
+      targetEntity: Categoria
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        categoria_padre_id:
+          referencedColumnName: categoria_id
+      orphanRemoval: false
+  lifecycleCallbacks: {  }

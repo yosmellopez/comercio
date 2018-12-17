@@ -1,0 +1,23 @@
+newsletter:
+    path:  /newsletters
+    defaults: { _controller: IcanBundle:Newsletter:index }
+    
+listarNewsletter:
+    path:  /newsletter/listarNewsletter
+    defaults: { _controller: IcanBundle:Newsletter:listar, _format: json }
+
+eliminarNewsletter:
+    path:  /newsletter/eliminarNewsletter
+    defaults: { _controller: IcanBundle:Newsletter:eliminar, _format: json }
+    
+eliminarNewsletters:
+    path:  /newsletter/eliminarNewsletters
+    defaults: { _controller: IcanBundle:Newsletter:eliminarNewsletters, _format: json }
+ 
+salvarNewsletter:
+    path:  /newsletter/salvarNewsletter
+    defaults: { _controller: IcanBundle:Newsletter:salvar, _format: json }  
+   
+cargarDatosNewsletter:
+    path:  /newsletter/cargarDatos
+    defaults: { _controller: IcanBundle:Newsletter:cargarDatos, _format: json }

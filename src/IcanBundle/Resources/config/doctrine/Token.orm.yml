@@ -1,0 +1,33 @@
+IcanBundle\Entity\Token:
+  type: entity
+  repositoryClass: IcanBundle\Entity\TokenRepository
+  table: token
+  id:
+    tokenId:
+      type: string
+      nullable: false
+      id: true
+      column: token_id
+  fields:
+    estado:
+      type: boolean
+      nullable: true
+    fechaToken:
+      type: datetime
+      nullable: true
+      column: fecha_token
+    fechaExpira:
+      type: datetime
+      nullable: true
+      column: fecha_expira
+  manyToOne:
+    usuario:
+      targetEntity: Usuario
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        usuario_id:
+          referencedColumnName: usuario_id
+      orphanRemoval: false
+  lifecycleCallbacks: {  }

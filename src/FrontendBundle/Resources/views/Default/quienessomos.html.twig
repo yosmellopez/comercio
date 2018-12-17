@@ -1,0 +1,51 @@
+{% extends 'FrontendBundle::layout.html.twig' %}
+
+{% block title %} {{ pagina.titulo }} {% endblock title %}
+
+{% block metas_titulo %}
+    <meta name="title" content="{{ pagina.titulo }} - Ican"/>
+    <meta http-equiv="title" content="{{ pagina.titulo }} - Ican"/>
+    <meta name="DC.Title" content="{{ pagina.titulo }} - Ican"/>
+{% endblock metas_titulo %}
+
+{% block metas_descripcion %}
+    <meta name="description" content="{{ pagina.descripcion |striptags| truncate(180, true)}}"/>
+    <meta http-equiv="description" content="{{ pagina.descripcion |striptags| truncate(180, true)}}"/>
+    <meta name="DC.description" content="{{ pagina.descripcion |striptags| truncate(180, true)}}"/>
+{% endblock metas_descripcion %}
+
+{% block keywords %}
+    <meta name="Keywords" content="{{ pagina.tags }}"/>
+    <meta http-equiv="keywords" content="{{ pagina.tags }}"/>
+    <meta name="DC.keywords" content="{{ pagina.tags }}"/>
+{% endblock keywords %}
+
+{% block stylesheetspecific %}
+
+{% endblock %}
+
+{% block menuquienessomosactiveclass %}active{% endblock menuquienessomosactiveclass %}
+
+
+{% block content %}
+    <section id="about-us">
+        <div class="container">
+            <div class="center wow fadeInDown">
+                <h2 class="spacer1">{{ pagina.titulo }}</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-7" style="">
+                    {{ pagina.descripcion |raw }}
+                </div>
+                <div class="col-md-5" style="">
+                    <img src="{{ asset('uploads/quienes-somos/'~pagina.imagen) }}" alt="" style="" class="img-responsive"/>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block javascriptspecific %}
+
+{% endblock %}

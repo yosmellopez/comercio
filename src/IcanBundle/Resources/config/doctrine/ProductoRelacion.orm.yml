@@ -1,0 +1,34 @@
+IcanBundle\Entity\ProductoRelacion:
+  type: entity
+  repositoryClass: IcanBundle\Entity\ProductoRelacionRepository
+  table: producto_relacion
+  id:
+    productorelacionId:
+      type: integer
+      nullable: false
+      options:
+        unsigned: false
+      id: true
+      column: productorelacion_id
+      generator:
+        strategy: AUTO
+  manyToOne:
+    producto:
+      targetEntity: IcanBundle\Entity\Producto
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        producto_id:
+          referencedColumnName: producto_id
+      orphanRemoval: false
+    productoRelacion:
+      targetEntity: IcanBundle\Entity\Producto
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        productorelacionado_id:
+          referencedColumnName: producto_id
+      orphanRemoval: false
+  lifecycleCallbacks: {  }

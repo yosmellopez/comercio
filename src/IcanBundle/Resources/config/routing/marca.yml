@@ -1,0 +1,35 @@
+marca:
+    path:  /marcas
+    defaults: { _controller: IcanBundle:Marca:index }
+    
+listarMarca:
+    path:  /marca/listarMarca
+    defaults: { _controller: IcanBundle:Marca:listar, _format: json }
+
+eliminarMarca:
+    path:  /marca/eliminarMarca
+    defaults: { _controller: IcanBundle:Marca:eliminar, _format: json }
+    
+eliminarMarcas:
+    path:  /marca/eliminarMarcas
+    defaults: { _controller: IcanBundle:Marca:eliminarMarcas, _format: json }
+ 
+salvarMarca:
+    path:  /marca/salvarMarca
+    defaults: { _controller: IcanBundle:Marca:salvar, _format: json }
+    
+salvarImagenMarca:
+    path:  /marca/salvarImagen
+    defaults: { _controller: IcanBundle:Marca:salvarImagen, _format: json }
+    
+eliminarImagenMarca:
+    path:  /marca/eliminarImagen
+    defaults: { _controller: IcanBundle:Marca:eliminarImagen, _format: json }
+       
+cargarDatosMarca:
+    path:  /marca/cargarDatos
+    defaults: { _controller: IcanBundle:Marca:cargarDatos, _format: json }
+
+recortarImagenMarca:
+  path:  /marca/recortarImagen
+  defaults: { _controller: IcanBundle:Marca:recortarImagen, _format: json }

@@ -1,0 +1,102 @@
+{% extends 'FrontendBundle::layout.html.twig' %}
+
+{% block stylesheetspecific %}
+
+{% endblock %}
+
+{% block menuregistroactiveclass %}active{% endblock menuregistroactiveclass %}
+
+{% block content %}
+    {% if complete %}
+        <section id="about-us">
+            <div class="container">
+                <div class="center wow fadeInDown">
+                    <h2 class="spacer1">Registro de Usuario</h2>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 tex" style="min-height: 1px;margin: auto auto">
+                        <div id="section-contacto" style="color: red;min-height: 30px;"></div>
+                        <div id="section-register">
+                            <form id="register-form" action="{{ path('procesar_registro') }}" method="POST">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label for="name">Nombre</label>
+                                        <input class="form-control" type="text" id="nombre" name="nombre" placeholder="Ingrese el nombre"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">Apellidos</label>
+                                        <input class="form-control" type="text" id="apellidos" name="apellidos" placeholder="Ingrese los apellidos"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email"> Email</label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true"></i></span></span>
+                                            <input type="email" class="form-control" id="email" name="email" placeholder="Ingrese el email"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password"> Contraseña </label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                                            <input type="password" class="form-control" id="password" name="password" placeholder="Ingrese la contraseña."/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="passwordRepeat"> Repetir Contraseña </label>
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                                            <input type="password" class="form-control" id="passwordRepeat" name="passwordRepeat" placeholder="Repita la contraseña."/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group text-right">
+                                        <label for="submit"></label>
+                                        <button class="btn btn-lg btn-primary" type="button" id="btn-enviar-registro">Registro</button>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% elseif expirado %}
+        <section id="about-us">
+            <div class="container">
+                <div class="center wow fadeInDown">
+                    <h2 class="spacer1">Registro de Usuario</h2>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 tex" style="min-height: 1px;margin: auto auto">
+                        <div id="section-contacto" style="color: red;min-height: 30px;"></div>
+                        <div>
+                            <h5>Este token ya ha sido usado anteriormente.</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% else %}
+        <section id="about-us">
+            <div class="container">
+                <div class="center wow fadeInDown">
+                    <h2 class="spacer1">Registro de Usuario Completado</h2>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 tex" style="min-height: 1px;margin: auto auto">
+                        <div id="section-contacto" style="color: red;min-height: 30px;"></div>
+                        <div>
+                            <h5>Registro completado.</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+
+{% endblock %}
+
+{% block javascriptspecific %}
+    <script src="{{ asset('bundles/ican/js/sha-1.js') }}"></script>
+    <script src="{{ asset('bundles/ican/js/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('bundles/frontend/js/my/registro.js') }}"></script>
+{% endblock %}

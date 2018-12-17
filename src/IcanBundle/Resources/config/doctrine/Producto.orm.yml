@@ -1,0 +1,140 @@
+IcanBundle\Entity\Producto:
+  type: entity
+  repositoryClass: IcanBundle\Entity\ProductoRepository
+  table: producto
+  id:
+    productoId:
+      type: integer
+      nullable: false
+      options:
+        unsigned: false
+      id: true
+      column: producto_id
+      generator:
+        strategy: AUTO
+  fields:
+    codigo:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: false
+    nombre:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: false
+    titulo:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: true
+    descripcion:
+      type: text
+      nullable: false
+    caracteristica:
+      type: text
+      nullable: false
+    tags:
+      type: text
+      nullable: false
+    imagen:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: true
+    stock:
+      type: integer
+      options:
+        unsigned: false
+      nullable: false
+    precio:
+      type: integer
+      options:
+        unsigned: false
+      nullable: false
+    precioEspecial:
+      type: integer
+      options:
+        unsigned: false
+      nullable: false
+      column: precio_especial
+    destacado:
+      type: boolean
+      nullable: false
+    estado:
+      type: boolean
+      nullable: true
+    fechapublicacion:
+      type: datetime
+      nullable: true
+    url:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: true
+    views:
+      type: integer
+      options:
+        unsigned: false
+      nullable: false
+    ficha:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: true
+    disponibilidadInmediata:
+      type: boolean
+      nullable: true
+      column: disponibilidad_inmediata
+    formaPago:
+      type: text
+      nullable: false
+      column: forma_pago
+    terminoDespacho:
+      type: text
+      nullable: false
+      column: termino_despacho
+  manyToOne:
+    categoria:
+      targetEntity: IcanBundle\Entity\Categoria
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        categoria_id:
+          referencedColumnName: categoria_id
+      orphanRemoval: false
+    marca:
+      targetEntity: IcanBundle\Entity\Marca
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        marca_id:
+          referencedColumnName: marca_id
+      orphanRemoval: false
+    porciento:
+      targetEntity: IcanBundle\Entity\Porciento
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        porciento_id:
+          referencedColumnName: porciento_id
+      orphanRemoval: false
+    promocion:
+      targetEntity: IcanBundle\Entity\Promocion
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        promocion_id:
+          referencedColumnName: promocion_id
+      orphanRemoval: false
+  lifecycleCallbacks: {  }

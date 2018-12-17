@@ -1,0 +1,40 @@
+IcanBundle\Entity\ProductoView:
+    type: entity
+    repositoryClass: IcanBundle\Entity\ProductoViewRepository
+    table: producto_view
+    indexes:
+        Ref319:
+            columns:
+                - producto_id
+    id:
+        productoviewId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: productoview_id
+            generator:
+                strategy: AUTO
+    fields:
+        ip:
+            type: string
+            nullable: true
+            length: 50
+            options:
+                fixed: false
+        fecha:
+            type: date
+            nullable: true
+    manyToOne:
+        producto:
+            targetEntity: Producto
+            cascade: {  }
+            fetch: LAZY
+            # mappedBy: null
+            inversedBy: vistas
+            joinColumns:
+                producto_id:
+                    referencedColumnName: producto_id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

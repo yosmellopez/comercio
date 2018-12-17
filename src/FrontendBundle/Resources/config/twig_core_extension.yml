@@ -1,0 +1,9 @@
+parameters:
+#    usuario.example.class: FrontendBundle\Example
+
+services:
+    twig.extension.text:
+       class:  Twig_Extensions_Extension_Text
+       tags:
+           - { name: twig.extension}
+         

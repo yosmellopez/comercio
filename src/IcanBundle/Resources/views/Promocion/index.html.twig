@@ -1,0 +1,639 @@
+{% extends 'IcanBundle::layout.html.twig' %}
+
+{% block subtitle %} - Banners de Promoción{% endblock %}
+
+{% block stylesheetspecific %}
+    <link href="{{ asset('bundles/ican/plugins/jquery-tags-input/jquery.tagsinput.css') }}" rel="stylesheet"
+          type="text/css"/>
+    <link href="{{ asset('bundles/ican/plugins/cropperjs/cropper.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <!-- BEGIN: Subheader -->
+    <div class="m-subheader ">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto">
+                <h3 class="m-subheader__title m-subheader__title--separator">Dashboard</h3>
+                <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                    <li class="m-nav__item m-nav__item--home">
+                        <a href="{{ url('home') }}" class="m-nav__link m-nav__link--icon">
+                            <i class="m-nav__link-icon la la-home"></i>
+                        </a>
+                    </li>
+                    <li class="m-nav__separator">-</li>
+                    <li class="m-nav__item">
+                        <a href="" class="m-nav__link">
+                            <span class="m-nav__link-text">Banners de Promoción</span>
+                        </a>
+                    </li>
+                    <li class="m-nav__separator">-</li>
+                    <li class="m-nav__item">
+                        <a href="" class="m-nav__link">
+                            <span class="m-nav__link-text">Administre los banners de promoción</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- END: Subheader -->
+
+    <div class="m-content">
+        <div id="lista-promocion" class="m-portlet m-portlet--mobile" m-portlet="true">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text">
+                            Mis Banners de Promoción
+                        </h3>
+                    </div>
+                </div>
+                <div class="m-portlet__head-tools">
+                    <ul class="m-portlet__nav">
+                        <li class="m-portlet__nav-item">
+                            <a href="javascript:;" m-portlet-tool="fullscreen"
+                               class="m-portlet__nav-link m-portlet__nav-link--icon">
+                                <i class="la la-expand"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="m-portlet__body">
+                <!--begin: Search Form -->
+                <div class="m-form m-form--label-align-right m--margin-bottom-15">
+                    <div class="row align-items-center">
+                        <div class="col-xl-12 order-1">
+                            <div class="form-group m-form__group row align-items-center">
+                                <div class="col-md-2">
+                                    <a id="btn-nuevo-promocion"
+                                       class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air"
+                                       href="javascript:;">
+							<span>
+								<i class="la la-plus"></i>
+								<span>
+									Nuevo
+								</span>
+							</span>
+                                    </a>
+                                </div>
+                                <div class="col-md-4">
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="m-input-icon m-input-icon--left">
+                                        <input type="text" class="form-control m-input m_form_search"
+                                               placeholder="Buscar...">
+                                        <span class="m-input-icon__icon m-input-icon__icon--left">
+									<span><i class="la la-search"></i></span>
+								</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <a id="btn-eliminar-promocion"
+                                       class="btn btn-danger m-btn m-btn--custom m-btn--icon m-btn--air m--pull-right"
+                                       href="javascript:;">
+							<span>
+								<i class="la la-trash-o"></i>
+								<span>
+									Eliminar
+								</span>
+							</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!--end: Search Form -->
+                <!--begin: Datatable -->
+                <div class="m_datatable" id="promocion-table-editable"></div>
+                <!--end: Datatable -->
+            </div>
+        </div>
+
+        <div id="form-promocion" class="m-portlet m--hide">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <h3 class="m-portlet__head-text" id="form-promocion-title">
+                            ¿Deseas crear un nuevo banner de promoción? Sigue los siguientes pasos:
+                        </h3>
+                    </div>
+                </div>
+                <div class="m-portlet__head-tools">
+                    <ul class="m-portlet__nav">
+                        <li class="m-portlet__nav-item">
+                            <a href="javascript:;"
+                               class="m-portlet__nav-link m-portlet__nav-link--icon cerrar-form-promocion"><i
+                                        class="la la-close"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="m-portlet__body">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active wizard-tab" data-item="1"
+                           data-toggle="tab" href="#tab-content-general" id="tab-general">
+                            General
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link wizard-tab" data-item="2"
+                           data-toggle="tab" href="#tab-content-seo" id="tab-seo">
+                            Seo on Page
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link wizard-tab" data-item="3"
+                           data-toggle="tab" href="#tab-content-productos" id="tab-productos">
+                            Productos
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+
+                    <div class="tab-pane active" id="tab-content-general" role="tabpanel">
+                        <form class="m-form" id="promocion-form" action="#"
+                              enctype="multipart/form-data" method="post">
+
+                            <input type="hidden" id="promocion_id" name="promocion_id"/>
+
+                            <div class="m-form__section m-form__section--first">
+                                <div class="form-group m-form__group ic-form-group">
+                                    <label>
+                                        <span class="ic-step-number">1</span>
+                                        Para comenzar, ingrese el nombre de tu banner de promoción
+                                        <span class="ic-small italic">(obligatorio)</span>
+                                    </label>
+                                    <p class="m-form__help">
+                                        Es muy importante que elijas un nombre claro y representativo,
+                                        a través del cual puedas identificar fácilmente tu banner de promoción una vez
+                                        creado.
+                                    </p>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="text" class="form-control event-change" id="nombre"
+                                                   name="nombre"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group ic-form-group">
+                                    <label>
+                                        <span class="ic-step-number">2</span>
+                                        A continuación, selecciona el % de descuento
+                                        <span class="ic-small italic">(obligatorio)</span>
+                                    </label>
+                                    <div class="row">
+                                        <div class="col-md-3" id="select-porciento">
+                                            <select class="form-control m-select2  event-change" id="porciento" name="porciento">
+                                                <option value="">Seleccione un porciento</option>
+                                                {% for item in porcientos %}
+                                                    <option value="{{ item.porcientoId }}">{{ item.valor }}%
+                                                    </option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group m-form__group ic-form-group">
+                                    <label>
+                                        <span class="ic-step-number">3</span>
+                                        Seguidamente, selecciona la imagen principal del banner de promoción.
+                                        Las medidas de la imagen deben ser 350px de ancho y 150px de alto
+                                        <span class="ic-small italic">(obligatorio)</span>
+                                    </label>
+                                    <p class="m-form__help">
+                                        Puedes arrastrar una imagen directamente desde una carpeta de
+                                        tu computadora al área señalada en este paso. O simplemente hacer click. Las
+                                        imágenes deben estar en formato jpg, jpeg o png.
+                                    </p>
+                                    <div class="row">
+                                        <div class="col-md-5" id="processing-dropzone">
+                                            <div class="m-dropzone my-dropzone m-dropzone--primary" id="my-dropzone">
+                                                <div class="m-dropzone__msg dz-message needsclick">
+                                                    <h3 class="m-dropzone__msg-title">
+                                                        Arrastra o has click para subir.
+                                                    </h3>
+                                                    <span class="m-dropzone__msg-desc">
+                                                    sube tu galería de fotos
+                                                </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group ic-form-group">
+                                    <label><span class="ic-step-number">4</span>Define el estado en el que se
+                                        creará el banner de promoción</label>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="m-form__group form-group">
+                                                <div class="m-radio-inline">
+                                                    <label class="m-radio">
+                                                        <input type="radio" name="radioestado" id="estadoactivo"
+                                                               class="event-change" checked>
+                                                        Activo
+                                                        <span></span>
+                                                    </label>
+                                                    <label class="m-radio">
+                                                        <input type="radio" name="radioestado" id="estadoinactivo"
+                                                               class="event-change">
+                                                        Inactivo
+                                                        <span></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group m-form__group ic-form-group">
+                                    <label><span class="ic-step-number">5</span>Define la fecha y hora de inicio y fin
+                                        del banner de promoción <span
+                                                class="ic-small italic">(obligatorio)</span></label>
+                                    <p class="help-block">Estas fechas definen el tiempo de vida del banner de
+                                        promoción</p>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Inicio</label>
+                                            <div class="input-group date">
+                                                <input type="text"
+                                                       class="form-control event-change m-input date-time-picker"
+                                                       readonly="" id="fechainicio" name="fechainicio">
+                                                <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <i class="la la-calendar glyphicon-th"></i>
+                                            </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Fin</label>
+                                            <div class="input-group date">
+                                                <input type="text"
+                                                       class="form-control event-change m-input date-time-picker"
+                                                       readonly="" id="fechafin" name="fechafin">
+                                                <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <i class="la la-calendar glyphicon-th"></i>
+                                            </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane" id="tab-content-seo" role="tabpanel">
+                        <form class="m-form" id="seo-form" action="#"
+                              enctype="multipart/form-data" method="post">
+
+                            <div class="m-form__section m-form__section--first">
+                                <div class="form-group m-form__group ic-form-group">
+                                    <label>
+                                        <span class="ic-step-number">1</span>
+                                        Título
+                                        <span class="ic-small italic">(obligatorio)</span>
+                                    </label>
+                                    <p class="m-form__help">
+                                        Este título se incrustará en los META de la página con el listado de promociones
+                                        de la promocion, permitiendo optimizar la busqueda de los buscadores.
+                                    </p>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="text" class="form-control event-change" id="titulo"
+                                                   name="titulo"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group ic-form-group">
+                                    <label>
+                                        <span class="ic-step-number">2</span>
+                                        Descripción
+                                        <span class="ic-small italic">(obligatorio)</span>
+                                    </label>
+                                    <p class="m-form__help">
+                                        La descripción te ayuda a mostrar información adicional sobre tu promoción. Se
+                                        incrustará en los META de la página con el listado de productos de la promoción,
+                                        permitiendo optimizar la búsqueda de los buscadores.
+                                    </p>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <textarea class="form-control" id="descripcion" name="descripcion"
+                                                      rows="4"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group m-form__group ic-form-group">
+                                    <label>
+                                        <span class="ic-step-number">3</span>
+                                        Palabras claves
+                                        <span class="ic-small italic">(obligatorio)</span>
+                                    </label>
+                                    <p class="m-form__help">Estos tags se incrustarán en los META de la página
+                                        con el listado de promociones de la promocion, permitiendo optimizar la busqueda
+                                        de los buscadores.</p>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="text" class="form-control tags event-change" id="tags"
+                                                   name="tags"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="tab-pane" id="tab-content-productos" role="tabpanel">
+                        <div class="row" id="lista-productos">
+                            <div class="col-lg-12">
+                                <!--begin: Search Form -->
+                                <div class="m-form m-form--label-align-right">
+                                    <div class="row align-items-center">
+                                        <div class="col-xl-12 order-1">
+                                            <div class="form-group m-form__group row align-items-center">
+                                                <div class="col-md-8">
+                                                    <div class="btn-group">
+                                                        <button id="btn-agregar-productos" class="btn btn-success"
+                                                                style="margin-bottom: 20px; margin-top: 10px;">
+                                                            Agregar <i class="la la-plus"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="m-input-icon m-input-icon--left">
+                                                        <input type="text" class="form-control m-input m_form_search"
+                                                               placeholder="Buscar...">
+                                                        <span class="m-input-icon__icon m-input-icon__icon--left">
+                                                        <span><i class="la la-search"></i></span>
+                                                    </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!--end: Search Form -->
+                                <!--begin: Datatable -->
+                                <div class="m_datatable" id="lista-productos-table-editable"></div>
+                                <!--end: Datatable -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="m-form">
+                    <div class="m-form__actions text-center">
+                        <button id="btn-wizard-anterior"
+                                class="btn btn-info m--hide" type="button">
+                            Anterior
+                        </button>
+
+                        <button id="btn-wizard-siguiente"
+                                class="btn btn-primary" type="button">
+                            Siguiente
+                        </button>
+                        <button id="btn-wizard-finalizar" class="btn btn-success m--hide" type="button">
+                            Guardar
+                        </button>
+                        <button class="btn btn-danger cerrar-form-promocion" type="button">
+                            Cancelar
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-productos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Productos</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="lista-relacionado">
+                        <!--begin: Search Form -->
+                        <div class="m-form m-form--label-align-right m--margin-bottom-15">
+                            <div class="row align-items-center">
+                                <div class="col-xl-12 order-1">
+                                    <div class="form-group m-form__group row align-items-center">
+                                        <div class="col-md-3">
+                                            <select class="form-control m-select2" id="filtro-categoria">
+                                                <option value="">Categoría</option>
+                                                {% for item in categorias %}
+                                                    <option value="{{ item.categoria_id }}"
+                                                            class="{{ item.class }}">{{ item.descripcion }}
+                                                    </option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <select class="form-control m-select2" id="filtro-marca">
+                                                <option value="">Marca</option>
+                                                {% for item in marcas %}
+                                                    <option value="{{ item.marcaId }}">{{ item.nombre }}
+                                                    </option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="m-input-icon m-input-icon--left">
+                                                <input type="text" class="form-control m-input m_form_search"
+                                                       placeholder="Buscar...">
+                                                <span class="m-input-icon__icon m-input-icon__icon--left">
+                                                    <span><i class="la la-search"></i></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <a href="javascript:;" id="btn-filtrar-productos"
+                                               class="btn btn-info m-btn m-btn--custom m-btn--icon m-btn--air">
+                                                <span>
+                                                    <i class="la la-search"></i>
+                                                    <span>Filtrar</span>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!--end: Search Form -->
+                        <!--begin: Datatable -->
+                        <div class="m_datatable" id="productos-table-editable"></div>
+                        <!--end: Datatable -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-recortar-imagen" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" style="max-width: 98%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Recortar Imagen</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="img-container">
+                        <img id="imagen-jcrop" src="" class="">
+                    </div>
+
+                    <input type="hidden" id="imagen-a-recortar" value=""/>
+                    <input type="hidden" id="crop_x" name="x" class="coords"/>
+                    <input type="hidden" id="crop_y" name="y" class="coords"/>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <table class="table table-bordered" style="margin-top: 20px">
+                                <tr>
+                                    <td>
+                                        <label class="control-label">Ancho (591)</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="crop_w" name="w" class="form-control btn-sm coords"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="control-label">Alto (447)</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="crop_h" name="h" class="form-control btn-sm coords"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-9">
+                            <div style="margin-top: 20px">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary" id="cropper-action-zoom-in"
+                                            title="Zoom In">
+                                        <span class="fa fa-search-plus"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary" id="cropper-action-zoom-out"
+                                            title="Zoom Out">
+                                        <span class="fa fa-search-minus"></span>
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary" id="cropper-action-move-left"
+                                            title="Move Left">
+                                        <span class="fa fa-arrow-left"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary" id="cropper-action-move-right"
+                                            title="Move Right">
+                                        <span class="fa fa-arrow-right"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary" id="cropper-action-move-up"
+                                            title="Move Up">
+                                        <span class="fa fa-arrow-up"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary" id="cropper-action-move-down"
+                                            title="Move Down">
+                                        <span class="fa fa-arrow-down"></span>
+                                    </button>
+                                </div>
+
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary" id="cropper-action-rotate-left"
+                                            title="Rotate Left">
+                                        <span class="la la-rotate-left"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary" id="cropper-action-rotate-right"
+                                            title="Rotate Right">
+                                        <span class="la la-rotate-right"></span>
+                                    </button>
+                                </div>
+
+                                {#
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary" id="cropper-action-scale-x"
+                                            data-option="-1" title="Flip Horizontal">
+                                        <span class="fa fa-arrows-alt-h"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary" id="cropper-action-scale-y"
+                                            data-option="-1" title="Flip Vertical">
+                                        <span class="fa fa-arrows-alt-v"></span>
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary" id="cropper-action-crop" title="Crop">
+                                        <span class="la la-check"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary" id="cropper-action-clear" title="Clear">
+                                        <span class="la la-remove"></span>
+                                    </button>
+                                </div>
+
+
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary" id="cropper-action-disable" title="Disable">
+                                        <span class="fa fa-lock"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary" id="cropper-action-enable" title="Enable">
+                                        <span class="fa fa-lock-open"></span>
+                                    </button>
+                                </div>
+                                #}
+
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-primary" id="cropper-action-reset" title="Reset">
+                                        <span class="la la-refresh"></span>
+                                    </button>
+                                </div>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-success" id="btn-recortar-imagen">Salvar Cambios</button>
+                                </div>
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-danger" id="btn-cerrar-modal-recortar-imagen">Cancelar</button>
+                                </div>
+
+                            </div>
+                            <div style="margin-top: 10px;">
+                                <div class="docs-preview clearfix">
+                                    <div class="img-preview preview-lg"></div>
+                                    {#
+                                    <div class="img-preview preview-md"></div>
+                                    <div class="img-preview preview-sm"></div>
+                                    <div class="img-preview preview-xs"></div>
+                                    #}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascriptsspecific %}
+    <script src="{{ asset('bundles/ican/plugins/jquery-tags-input/jquery.tagsinput.min.js') }}"></script>
+    <script src="{{ asset('bundles/ican/plugins/cropperjs/cropper.js') }}"></script>
+    <script src="{{ asset('bundles/ican/js/pages/promociones.js') }}"></script>
+    <script>
+        var rutaServidor = "{{ ruta }}";
+        jQuery(document).ready(function () {
+            Promociones.init();
+        });
+    </script>
+{% endblock %}

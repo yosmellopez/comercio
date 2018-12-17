@@ -1,0 +1,7 @@
+redsocial:
+    path:  /redes-sociales
+    defaults: { _controller: IcanBundle:Redsocial:index }
+ 
+salvarRedsocial:
+    path:  /redsocial/salvarRedsocial
+    defaults: { _controller: IcanBundle:Redsocial:salvar, _format: json }

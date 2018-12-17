@@ -1,0 +1,45 @@
+imports:
+    - { resource: parameters.yml }
+
+# To get started with security, check out the documentation:
+# https://symfony.com/doc/current/security.html
+security:
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
+        IcanBundle\Entity\Usuario: sha512
+        
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    providers:
+        main:
+            entity: { class: IcanBundle\Entity\Usuario, property: email }
+
+    firewalls:                    
+        secured_area:  
+            remember_me:
+                secret:      "%secret%"
+                lifetime: 31536000 # 365 days in seconds
+                path:     /admin
+                domain:   ~ # Defaults to the current domain from $_SERVER
+            anonymous:  ~
+            form_login:
+                login_path:  /login
+                check_path:  /check
+                username_parameter: _username
+                password_parameter: _password
+                #failure_path: /login_failure
+                remember_me: true
+            logout:
+                path:   /logout
+                target: /admin
+    access_denied_url: /denegado
+    access_control:  
+        - { path: ^/admin/producto/ficha, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin , roles: [ROLE_ADMIN, ROLE_USER] }  
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }  
+        - { path: ^/usuario/olvidoContrasenna, roles: IS_AUTHENTICATED_ANONYMOUSLY }       
+        - { path: ^/usuario/autenticar, roles: IS_AUTHENTICATED_ANONYMOUSLY }       
+#        - { path: ^/, roles: [ROLE_USER, ROLE_ADMIN] } 

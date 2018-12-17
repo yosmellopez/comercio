@@ -1,0 +1,74 @@
+2018-12-06 04:55:23	---	WebPay Init Transaction Request: array (
+  'amount' => 9990,
+  'buyOrder' => 26448,
+  'sessionId' => '5c089dabcb3b5',
+  'urlReturn' => 'http://localhost/ecommerce/web/admin/test-webpay-result',
+  'urlFinal' => 'http://localhost/ecommerce/web/admin/test-webpay-final',
+)
+2018-12-06 04:55:24	---	WebPay Init Transaction Result: Transbank\Webpay\initTransactionResponse::__set_state(array(
+   'return' => NULL,
+   'token' => 'e87427739de249c6e0d80d08cb5800917c7ec7e255cfa1be5e1e6956e043f3c7',
+   'url' => 'https://webpay3gint.transbank.cl/webpayserver/initTransaction',
+))
+2018-12-06 04:56:34	---	WebPay Transaction Result: Transbank\Webpay\transactionResultOutput::__set_state(array(
+   'accountingDate' => '1206',
+   'buyOrder' => '26448',
+   'cardDetail' => 
+  Transbank\Webpay\cardDetail::__set_state(array(
+     'cardNumber' => '6623',
+     'cardExpirationDate' => NULL,
+  )),
+   'detailOutput' => 
+  Transbank\Webpay\wsTransactionDetailOutput::__set_state(array(
+     'authorizationCode' => '1213',
+     'paymentTypeCode' => 'VN',
+     'responseCode' => 0,
+     'sharesNumber' => 0,
+     'amount' => '9990',
+     'commerceCode' => '597020000540',
+     'buyOrder' => '26448',
+  )),
+   'sessionId' => '5c089dabcb3b5',
+   'transactionDate' => '2018-12-06T00:55:25.139-03:00',
+   'urlRedirection' => 'https://webpay3gint.transbank.cl/webpayserver/voucher.cgi',
+   'VCI' => 'TSY',
+))
+2018-12-06 04:58:10	---	WebPay Transaction Result: array (
+  'error' => 'Error conectando a Webpay (Verificar que la informaci&oacute;n del certificado sea correcta)',
+  'detail' => ' Timeout error(272) ',
+)
+2018-12-06 04:58:22	---	WebPay Init Transaction Request: array (
+  'amount' => 9990,
+  'buyOrder' => 24814,
+  'sessionId' => '5c089e5e775c3',
+  'urlReturn' => 'http://localhost/ecommerce/web/admin/test-webpay-result',
+  'urlFinal' => 'http://localhost/ecommerce/web/admin/test-webpay-final',
+)
+2018-12-06 04:58:23	---	WebPay Init Transaction Result: Transbank\Webpay\initTransactionResponse::__set_state(array(
+   'return' => NULL,
+   'token' => 'ecb38cc7b83b47f4329f58ff5c179cbd72fdd7c22425f34481497026125ce0af',
+   'url' => 'https://webpay3gint.transbank.cl/webpayserver/initTransaction',
+))
+2018-12-06 04:59:40	---	WebPay Transaction Result: Transbank\Webpay\transactionResultOutput::__set_state(array(
+   'accountingDate' => '1206',
+   'buyOrder' => '24814',
+   'cardDetail' => 
+  Transbank\Webpay\cardDetail::__set_state(array(
+     'cardNumber' => '6623',
+     'cardExpirationDate' => NULL,
+  )),
+   'detailOutput' => 
+  Transbank\Webpay\wsTransactionDetailOutput::__set_state(array(
+     'authorizationCode' => '1213',
+     'paymentTypeCode' => 'VN',
+     'responseCode' => 0,
+     'sharesNumber' => 0,
+     'amount' => '9990',
+     'commerceCode' => '597020000540',
+     'buyOrder' => '24814',
+  )),
+   'sessionId' => '5c089e5e775c3',
+   'transactionDate' => '2018-12-06T00:58:23.939-03:00',
+   'urlRedirection' => 'https://webpay3gint.transbank.cl/webpayserver/voucher.cgi',
+   'VCI' => 'TSY',
+))

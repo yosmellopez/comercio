@@ -1,0 +1,133 @@
+@charset "utf-8";
+:link,:visited {text-decoration:none }
+ul,ol {list-style:none }
+h1,h2,h3,h4,h5,h6,pre,code {font-size:1em;}
+ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,fieldset,input, td, tr {margin:0;padding:0 }
+table{border-collapse:collapse;border-spacing:0}
+a img,:link img,:visited img {border:none }
+address {font-style:normal }
+
+body {font-family:"Arial", Tahoma, Verdana, Helvetica, sans-serif;/*font-family: "Lucida Sans Unicode","Lucida Grande",sans-serif;*/font-size:11px;color:#777777;background: url('img/bg_body-patern.gif') 0px 0px repeat}
+
+a {text-decoration:none;color:#003b4f;padding:0;margin:0;outline:0}
+a:hover {text-decoration:none;color:#a10303;-webkit-transition:color 300ms ease-in;-moz-transition:color 300ms ease-in;-o-transition:color 300ms ease-in;transition:color 300ms ease-in;}
+
+h1, h2, h3, h4, p, td {padding:0px;margin:0px;font-weight:normal}
+h1 {font-size:14px;font-weight:bold;margin:10px 0;color:#3f3f3f;} h2 {font-size:14px;font-weight:bold;margin:10px 0;padding:0} h3 {display:block;color:#3f3f3f;font-size: 9px;text-align:center;font-weight:normal;line-height:10px;margin:10px 0;text-transform: uppercase;font-style: normal;} h4 {display:inline;color:#333;font-size:9px;font-weight:normal;line-height:10px;margin:5px 0;text-transform: uppercase;font-style: normal;} p {font:13px;margin:10px 0}
+
+.container {
+    margin: auto
+}
+
+.centrado {
+    float: none;
+    margin: auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.compra_ok_cont_title {
+    clear: both;
+    width: 440px;
+    height: 30px;
+    margin: 20px auto;
+    margin-bottom: 10px;
+    margin-left: 150px;
+    padding-left: 30px;
+    line-height: 20px;
+    /*font-family: "Open Sans", Helvetica, Arial, sans-serif;*/
+    font-weight: bold;
+    font-size: 18px;
+    text-align: left;
+    color: #666;
+    background-image: url(../../ican/pdf/img/ok.png);
+    background-repeat: no-repeat;
+}
+
+
+#cabecera {
+    border-bottom: 1px solid #f7f7f7;
+}
+
+.contenido a {
+    color: #222;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.contenido a:hover {
+    color: #666;
+    text-decoration: none
+}
+
+#footer {
+    color: #fff;
+    background-color: #212529;/*
+    padding: 10px 0 10px 0;
+    overflow: hidden;
+    width: 100%;
+    height: 50px;
+    margin-top: 50px !important*/
+}
+
+#footer p {
+    font-size: 14px;
+    color: #fff;
+    font-weight: 400;
+    margin-top: 0px;
+    text-align: left
+}
+
+#footer p a {
+    margin-top: 0px
+}
+
+#footer a {
+    color: #fff;
+    text-decoration: none;
+    margin-top: 30px;
+    display: block;
+    font-size: 14px;
+}
+
+#footer a:hover {
+    color: #666;
+}
+
+.titles {
+    width: 688px;
+    background-color: #c62127;
+    display: inline-block;
+    color: #fff;
+    font-family: arial;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 6px 10px;
+    text-decoration: none;
+    float: left;
+    /*font-family: "Open Sans", Helvetica, Arial, sans-serif;*/
+    font-weight: 700
+}
+
+.table_cont {
+    width: 710px;
+    /*height: auto;*/
+    /*font-family: "Open Sans", Helvetica, Arial, sans-serif;*/
+    font-size: 14px;
+    font-weight: bold;
+    color: #666;
+}
+
+td {
+    padding: 10px;
+    border: 1px solid #cfcfcf;
+}
+
+.celda-titulo {
+    background-color: #c62127;
+    border: none;
+    border-top: 1px solid #fff;
+    color: #fff;
+}

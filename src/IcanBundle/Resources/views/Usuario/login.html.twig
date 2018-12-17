@@ -1,0 +1,82 @@
+{% extends 'IcanBundle::layout-login.html.twig' %}
+
+{% block subtitle %} - Login{% endblock %}
+
+{% block stylesheetspecific %}{% endblock %}
+
+{% block content %}
+
+    <!-- begin:: Page -->
+    <div class="m-grid m-grid--hor m-grid--root m-page">
+        <div id="m_login" class="m-grid__item m-grid__item--fluid m-grid m-grid--hor m-login m-login--signin m-login--2 m-login-2--skin-2"
+             style="background-image: url('{{ asset('bundles/ican/assets/app/media/img//bg/bg-3.jpg') }}');">
+            <div class="m-grid__item m-grid__item--fluid	m-login__wrapper">
+                <div class="m-login__container">
+                    <div class="m-login__logo">
+                        <a href="javascript:;">
+                            <img src="{{ asset('bundles/ican/img/logo.jpg') }}" width="180">
+                        </a>
+                    </div>
+                    <div class="m-login__signin">
+                        <div class="m-login__head">
+                            <h3 class="m-login__title">Por favor, ingrese sus datos</h3>
+                        </div>
+                        <form id="form-login" class="m-login__form m-form" action="#" data-url="{{ url('auntenticarUsuario') }}" method="post">
+                            <div class="form-group m-form__group">
+                                <input class="form-control m-input" type="text" placeholder="Email" name="email" id="email" autocomplete="off">
+                            </div>
+                            <div class="form-group m-form__group">
+                                <input type="hidden" id="passwordcodificada" name="passwordcodificada">
+                                <input class="form-control m-input m-login__form-input--last" type="password" placeholder="Contraseña" name="password" id="password">
+                            </div>
+                            <div class="row m-login__form-sub">
+                                <div class="col m--align-left m-login__form-left">
+                                    <label class="m-checkbox  m-checkbox--focus">
+                                        <input type="checkbox" name="remember" id="remember"> Recordar
+                                        <span></span>
+                                    </label>
+                                </div>
+                                <div class="col m--align-right m-login__form-right">
+                                    <a href="javascript:;" id="m_login_forget_password" class="m-link">¿Olvidaste tu contraseña?</a>
+                                </div>
+                            </div>
+                            <div class="m-login__form-action">
+                                <button id="m_login_signin_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air m-login__btn m-login__btn--primary">Ingresar</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="m-login__forget-password">
+                        <div class="m-login__head">
+                            <h3 class="m-login__title">¿Olvidaste tu contraseña?</h3>
+                            <div class="m-login__desc">
+                                Ingrese su dirección e-mail para recuperar su contraseña:
+                            </div>
+                        </div>
+                        <form id="forgot-form" class="m-login__form m-form" action="" data-url="{{ url('forgetPass') }}" method="post">
+                            <div class="form-group m-form__group">
+                                <input class="form-control m-input" type="text" placeholder="Email" name="email" id="m_email" autocomplete="off">
+                            </div>
+                            <div class="m-login__form-action">
+                                <button id="m_login_forget_password_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn m-login__btn--primaryr">Enviar</button>&nbsp;&nbsp;
+                                <button id="m_login_forget_password_cancel" class="btn btn-outline-focus m-btn m-btn--pill m-btn--custom m-login__btn">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end:: Page -->
+
+{% endblock %}
+
+
+{% block javascriptsspecific %}
+    <script src="{{ asset('bundles/ican/js/sha-1.js') }}"></script>
+    <script src="{{ asset('bundles/ican/js/pages/login.js') }}"></script>
+    <script>
+        jQuery(document).ready(function() {
+            Login.init();
+        });
+    </script>
+{% endblock %}

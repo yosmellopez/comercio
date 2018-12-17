@@ -1,0 +1,33 @@
+IcanBundle\Entity\DescuentoProducto:
+  type: entity
+  repositoryClass: IcanBundle\Entity\DescuentoProductoRepository
+  table: descuento_producto
+  id:
+    id:
+      type: integer
+      nullable: false
+      options:
+        unsigned: false
+      id: true
+      generator:
+        strategy: AUTO
+  manyToOne:
+    producto:
+      targetEntity: IcanBundle\Entity\Producto
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        producto_id:
+          referencedColumnName: producto_id
+      orphanRemoval: false
+    descuento:
+      targetEntity: IcanBundle\Entity\Descuento
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        descuento_id:
+          referencedColumnName: descuento_id
+      orphanRemoval: false
+  lifecycleCallbacks: {  }

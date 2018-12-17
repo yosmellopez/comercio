@@ -1,0 +1,39 @@
+promocion:
+  path:  /banners-promocion
+  defaults: { _controller: IcanBundle:Promocion:index }
+
+listarPromocion:
+  path:  /promocion/listarPromocion
+  defaults: { _controller: IcanBundle:Promocion:listar, _format: json }
+
+salvarPromocion:
+  path:  /promocion/salvarPromocion
+  defaults: { _controller: IcanBundle:Promocion:salvar, _format: json }
+
+cargarDatosPromocion:
+  path:  /promocion/cargarDatos
+  defaults: { _controller: IcanBundle:Promocion:cargarDatos, _format: json }
+
+eliminarPromocion:
+  path:  /promocion/eliminarPromocion
+  defaults: { _controller: IcanBundle:Promocion:eliminar, _format: json }
+
+eliminarPromociones:
+  path:  /promocion/eliminarPromociones
+  defaults: { _controller: IcanBundle:Promocion:eliminarPromociones, _format: json }
+
+salvarImagenPromocion:
+  path:  /promocion/salvarImagen
+  defaults: { _controller: IcanBundle:Promocion:salvarImagen, _format: json }
+
+eliminarImagenPromocion:
+  path:  /promocion/eliminarImagen
+  defaults: { _controller: IcanBundle:Promocion:eliminarImagen, _format: json }
+
+eliminarProductoPromocion:
+  path:  /promocion/eliminarProducto
+  defaults: { _controller: IcanBundle:Promocion:eliminarProducto, _format: json }
+
+recortarImagenPromocion:
+  path:  /promocion/recortarImagen
+  defaults: { _controller: IcanBundle:Promocion:recortarImagen, _format: json }

@@ -1,0 +1,21 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: comercio
+    database_user: rootecnolutions
+    database_password: 1q2w3e4r5t
+
+    mailer_transport:  smtp
+    mailer_host: smtp.gmail.com
+    mailer_user: yosmellopez@gmail.com
+    mailer_password: elpasswordmiodegmail
+    mailer_sender_address: yosmellopez@gmail.com
+    mailer_port:       25
+    mailer_security:   tls
+
+    locale:            en
+    secret:            tretrtsdasfd3gfhfghfffghfghfghtyy
+
+    recaptcha_publick_key: 6Lej9AsTAAAAAFYjZABU5XCj8q8D79Cu-TMAxwRh
+    recaptcha_private_key: 6Lej9AsTAAAAAFW4Bm4avJfqs0hTds1HwEWw8qeG

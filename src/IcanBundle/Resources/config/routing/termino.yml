@@ -1,0 +1,11 @@
+termino:
+  path:  /terminos
+  defaults: { _controller: IcanBundle:Termino:index }
+
+salvarTermino:
+  path:  /terminos/salvarTermino
+  defaults: { _controller: IcanBundle:Termino:salvar, _format: json }
+
+cargarDatosTermino:
+  path:  /terminos/cargarDatos
+  defaults: { _controller: IcanBundle:Termino:cargarDatos, _format: json }

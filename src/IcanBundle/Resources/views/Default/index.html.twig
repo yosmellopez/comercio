@@ -1,0 +1,126 @@
+{% extends 'IcanBundle::layout.html.twig' %}
+
+{% block subtitle %} - Inicio{% endblock %}
+
+{% block stylesheetspecific %}{% endblock %}
+
+{% block content %}
+    <!-- BEGIN: Subheader -->
+    <div class="m-subheader ">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto">
+                <h3 class="m-subheader__title m-subheader__title--separator">Dashboard </h3>
+                <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                    <li class="m-nav__item m-nav__item--home">
+                        <a href="#" class="m-nav__link m-nav__link--icon">
+                            <i class="m-nav__link-icon la la-home"></i>
+                        </a>
+                    </li>
+                    <li class="m-nav__separator">-</li>
+                    <li class="m-nav__item">
+                        <a href="" class="m-nav__link">
+                            <span class="m-nav__link-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="m-nav__separator">-</li>
+                    <li class="m-nav__item">
+                        <a href="" class="m-nav__link">
+                            <span class="m-nav__link-text">Estadísticas del sitio web</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- END: Subheader -->
+    <div class="m-content">
+
+        <!--Begin::Section-->
+        <div class="row">
+            <div class="col-xl-4">
+                <!--begin:: Widgets/Lasted Products-->
+                <div class="m-portlet m-portlet--full-height m-portlet--fit ">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <h3 class="m-portlet__head-text">
+                                    Últimos Productos Publicados
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-portlet__body">
+                        <div class="m-widget4 m-widget4--chart-bottom">
+                            {% for item in  ultimos %}
+                                <div class="m-widget4__item">
+                                    <div class="m-widget4__img m-widget4__img--logo">
+                                        <img src="{{ asset('uploads/productos/'~item.imagen) }}" alt="" style="border-radius: 0px">
+                                    </div>
+                                    <div class="m-widget4__info">
+                                        <span class="m-widget4__title">
+                                            {{ item.nombre }}
+                                        </span>
+                                            <br>
+                                        <span class="m-widget4__sub">
+                                            {{ item.fechapublicacion | date('d-m-Y h:i') }}
+                                        </span>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <!--end:: Widgets/Lasted Products-->
+            </div>
+            <div class="col-xl-4">
+                <!--begin:: Widgets/Lasted Products-->
+                <div class="m-portlet m-portlet--full-height m-portlet--fit ">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <h3 class="m-portlet__head-text">
+                                    Productos más Visitados
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-portlet__body">
+                        <div class="m-widget4 m-widget4--chart-bottom">
+                            {% for item in  masvisitados %}
+                                <div class="m-widget4__item">
+                                    <div class="m-widget4__img m-widget4__img--logo">
+                                        <img src="{{ asset('uploads/productos/'~item.imagen) }}" alt="" style="border-radius: 0px">
+                                    </div>
+                                    <div class="m-widget4__info">
+                                        <span class="m-widget4__title">
+                                            {{ item.nombre }}
+                                        </span>
+                                        <br>
+                                        <span class="m-widget4__sub">
+                                            {{ item.fechapublicacion | date('d-m-Y h:i') }}
+                                        </span>
+                                    </div>
+                                    <span class="m-widget4__ext">
+                                        <span class="m-widget4__number m--font-brand">{{ item.views }}</span>
+                                    </span>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <!--end:: Widgets/Lasted Products-->
+            </div>
+        </div>
+        <!--End::Section-->
+    </div>
+{% endblock %}
+
+{% block javascriptsspecific %}
+    <script src="{{ asset('bundles/ican/js/pages/index.js') }}"></script>
+    <script>
+        jQuery(document).ready(function () {
+            Index.init();
+        });
+    </script>
+{% endblock %}

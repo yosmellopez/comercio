@@ -1,0 +1,124 @@
+{% extends 'FrontendBundle::layout.html.twig' %}
+
+{% block title %} {{ marca.titulo }} {% endblock title %}
+
+{% block metas_titulo %}
+    <meta name="title" content="{{ marca.titulo }} - Ican"/>
+    <meta http-equiv="title" content="{{ marca.titulo }} - Ican"/>
+    <meta name="DC.Title" content="{{ marca.titulo }} - Ican"/>
+{% endblock metas_titulo %}
+
+{% block metas_descripcion %}
+    <meta name="description" content="{{ marca.descripcion }}"/>
+    <meta http-equiv="description" content="{{ marca.descripcion }}"/>
+    <meta name="DC.description" content="{{ marca.descripcion }}"/>
+{% endblock metas_descripcion %}
+
+{% block keywords %}
+    <meta name="Keywords" content="{{ marca.tags }}"/>
+    <meta http-equiv="keywords" content="{{ marca.tags }}"/>
+    <meta name="DC.keywords" content="{{ marca.tags }}"/>
+{% endblock keywords %}
+
+{% block stylesheetspecific %} 
+
+
+{% endblock %}
+
+
+{% block content %}
+    <section id="about-us">
+        <div class="container">
+            <div class="center wow fadeInDown">
+                <h2 class="spacer1">{{ marca.titulo }}</h2>
+            </div>
+            {% set i = 0 %}
+            {% set j = 1 %}
+            {% set amount = productos.getResults |length %}
+            {% for item in productos.getResults %}
+                {% if i == 0 %}
+                    <div class="row">
+                {% endif %}
+
+                <div class="col-xs-12 col-sm-4 col-md-3" style="margin-bottom: 10px; padding-right: 10px; padding-left: 10px;">
+                    <div class="recent-work-wrap">
+                        <img src="{{ asset('uploads/productos/portada-'~item.imagen) }}"
+                             class="img-responsive" alt="{{ item.nombre }}"/>
+                        <div class="overlay">
+                            <div class="recent-work-inner">
+                                <a class="preview" href="{{ url('productodetalle',{url: item.url}) }}">
+                                    <h3>
+                                        {{ item.nombre }}
+                                    </h3>
+                                    <p>
+                                        Stock: {{ item.stock }}<br>
+                                        {% if item.mostrarPrecio %}
+                                            Precio Normal: ${{ item.precio }}<br>
+                                            Precio Oferta: ${{ item.precioOferta }}
+                                        {% endif %}
+                                    </p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% if i == 3 or j == amount %}
+                    {% set i = 0 %}
+                    </div>
+                {% else %}
+                    {% set i = i + 1 %}
+                {% endif %}
+                {% set j = j + 1 %}
+
+            {% endfor %}
+
+            <div class="row">
+                <div class="spacer2"></div>
+                <div class="col-md-12 text-center">
+                            <span class="pagination-txt">
+                            Mostrando producto
+                                {% if productos.isFirstPage %}
+                                    {{ productos.getAdapter.key + 1 }}
+                                {% else %}
+                                    {% if productos.isLastPage %}
+                                        {{ productos.getAdapter.getTotalResults }}
+                                    {% else %}
+                                        {{ productos.getAdapter.key + 1 +productos.getLimit }}
+                                    {% endif %}
+                                {% endif %}
+                                -
+                                {% if productos.isFirstPage %}
+                                    {{ productos.getCountResults }}
+                                {% else %}
+                                    {% if productos.isLastPage %}
+                                        {{ productos.getAdapter.getTotalResults }}
+                                    {% else %}
+                                        {{ productos.getLimit + productos.getLimit }}
+                                    {% endif %}
+                                {% endif %}
+                                de
+                                {{ productos.getAdapter.getTotalResults }}
+                                productos
+                            </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <ul class="pagination">
+                        {% if productos.isPaginable %}
+                            {% if parametro_ruta != null %}
+                                {{ paginate(productos, ruta, {tipo:parametro_ruta}) }}
+                            {% else %}
+                                {{ paginate(productos, ruta) }}
+                            {% endif %}
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascriptspecific %}
+
+{% endblock %}

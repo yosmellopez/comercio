@@ -1,0 +1,55 @@
+producto:
+    path:  /producto
+    defaults: { _controller: IcanBundle:Producto:index }
+    
+listarProducto:
+    path:  /producto/listarProducto
+    defaults: { _controller: IcanBundle:Producto:listar, _format: json }
+    
+listarProductoParaRelacionados:
+    path:  /producto/listarParaRelacionados
+    defaults: { _controller: IcanBundle:Producto:listarParaRelacionados, _format: json }
+
+eliminarProducto:
+    path:  /producto/eliminarProducto
+    defaults: { _controller: IcanBundle:Producto:eliminar, _format: json }
+    
+eliminarProductos:
+    path:  /producto/eliminarProductos
+    defaults: { _controller: IcanBundle:Producto:eliminarProductos, _format: json }
+ 
+salvarProducto:
+    path:  /producto/salvarProducto
+    defaults: { _controller: IcanBundle:Producto:salvar, _format: json }
+    
+salvarImagenProducto:
+    path:  /producto/salvarImagen
+    defaults: { _controller: IcanBundle:Producto:salvarImagen, _format: json }
+    
+eliminarImagenProducto:
+    path:  /producto/eliminarImagen
+    defaults: { _controller: IcanBundle:Producto:eliminarImagen, _format: json }
+       
+cargarDatosProducto:
+    path:  /producto/cargarDatos
+    defaults: { _controller: IcanBundle:Producto:cargarDatos, _format: json }
+
+eliminarRelacionadoProducto:
+  path:  /producto/eliminarRelacionado
+  defaults: { _controller: IcanBundle:Producto:eliminarRelacionado, _format: json }
+
+listarProductoParaCotizacion:
+  path:  /producto/listarParaCotizacion
+  defaults: { _controller: IcanBundle:Producto:listarParaCotizacion, _format: json }
+
+listarProductoParaPromocion:
+  path:  /producto/listarParaPromocion
+  defaults: { _controller: IcanBundle:Producto:listarParaPromocion, _format: json }
+
+descargarFichaProducto:
+  path:  /producto/ficha/{producto_id}
+  defaults: { _controller: IcanBundle:Producto:descargarFicha }
+
+recortarImagenProducto:
+  path:  /producto/recortarImagen
+  defaults: { _controller: IcanBundle:Producto:recortarImagen, _format: json }

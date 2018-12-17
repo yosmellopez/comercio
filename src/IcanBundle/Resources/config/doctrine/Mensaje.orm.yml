@@ -1,0 +1,46 @@
+IcanBundle\Entity\Mensaje:
+  type: entity
+  repositoryClass: IcanBundle\Entity\MensajeRepository
+  table: mensaje
+  id:
+    mensajeId:
+      type: integer
+      nullable: false
+      options:
+        unsigned: false
+      id: true
+      column: mensaje_id
+      generator:
+        strategy: AUTO
+  fields:
+    nombre:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: false
+    telefono:
+      type: string
+      length: 50
+      options:
+        fixed: false
+      nullable: false
+    email:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: false
+    asunto:
+      type: string
+      length: 255
+      options:
+        fixed: false
+      nullable: false
+    descripcion:
+      type: text
+      nullable: false
+    fecha:
+      type: datetime
+      nullable: true
+  lifecycleCallbacks: {  }

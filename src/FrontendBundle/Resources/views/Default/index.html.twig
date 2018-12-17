@@ -1,0 +1,128 @@
+{% extends 'FrontendBundle::layout.html.twig' %}
+
+{% block title %} {{ seo_on_page.titulo }} {% endblock title %}
+
+{% block metas_titulo %}
+    <meta name="title" content="{{ seo_on_page.titulo }} - Ican"/>
+    <meta http-equiv="title" content="{{ seo_on_page.titulo }} - Ican"/>
+    <meta name="DC.Title" content="{{ seo_on_page.titulo }} - Ican"/>
+{% endblock metas_titulo %}
+
+{% block metas_descripcion %}
+    <meta name="description" content="{{ seo_on_page.descripcion }}"/>
+    <meta http-equiv="description" content="{{ seo_on_page.descripcion }}"/>
+    <meta name="DC.description" content="{{ seo_on_page.descripcion }}"/>
+{% endblock metas_descripcion %}
+
+{% block keywords %}
+    <meta name="Keywords" content="{{ seo_on_page.tags }}"/>
+    <meta http-equiv="keywords" content="{{ seo_on_page.tags }}"/>
+    <meta name="DC.keywords" content="{{ seo_on_page.tags }}"/>
+{% endblock keywords %}
+
+{% block stylesheetspecific %}
+    <link href="{{ asset('bundles/frontend/css/carousel.css') }}" type="text/css" rel="stylesheet">
+{% endblock %}
+
+{% block bodyclass %}homepage{% endblock bodyclass %}
+
+{% block menuinicioactiveclass %}active{% endblock menuinicioactiveclass %}
+
+{% block content %}
+    <!--main-slider-->
+    <section id="myCarousel" class="no-margin">
+        <div class="carousel slide">
+            <ol class="carousel-indicators">
+                {% for item in sliders %}
+                    <li data-target="#myCarousel" data-slide-to="{{ loop.index0 }}"
+                        class="{% if loop.first %}active{% endif %}"></li>
+                {% endfor %}
+            </ol>
+            <div class="carousel-inner">
+
+                {% for item in sliders %}
+                    <div class="item {% if loop.first %}active{% endif %}">
+                        {% if  item.link != "" %}
+                            <a target="_blank" href="{{ item.link }}">
+                                <img class="" src="{{ asset('uploads/sliders/'~item.imagen) }}"
+                                     alt="{{ item.imagen }}">
+                            </a>
+                        {% else %}
+                            <img class="" src="{{ asset('uploads/sliders/'~item.imagen) }}"
+                                 alt="{{ item.imagen }}">
+                        {% endif %}
+                        <div class="carousel-caption">
+                            <h1 class="animation animated-item-1">{{ item.titulo }}</h1>
+                            <p class="animation animated-item-2">{{ item.descripcion|striptags|truncate(200, true) }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <a class="left carousel-control hidden-xs" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="right carousel-control hidden-xs" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+    </section>
+    <!--ultimos productos-->
+    <section id="recent-works">
+        <div class="container">
+            <div class="row center wow fadeInDown">
+                <h2 class="title spacer05">Últimos Productos</h2>
+            </div>
+
+            <div class="row">
+                {% for item in ultimos %}
+                    <div class="col-xs-12 col-sm-4 col-md-3">
+                        <div class="recent-work-wrap">
+                            <img src="{{ asset('uploads/productos/portada-'~item.imagen) }}"
+                                 class="img-responsive" alt="{{ item.nombre }}"/>
+                            <div class="overlay">
+                                <div class="recent-work-inner">
+                                    <a class="preview" href="{{ url('productodetalle',{url: item.url}) }}">
+                                        <h3>
+                                            {{ item.nombre }}
+                                        </h3>
+                                        <p>
+                                            Stock: {{ item.stock }}<br>
+                                            {% if item.mostrarPrecio %}
+                                                Precio Normal: ${{ item.precio }}<br>
+                                                Precio Oferta: ${{ item.precioOferta }}
+                                            {% endif %}
+                                        </p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!--/#partner-->
+    <section id="partner">
+        <div class="container">
+            <div class="row center wow fadeInDown">
+                <h2 class="title spacer05">Nuestras Marcas</h2>
+            </div>
+
+            <div class="partners">
+                <ul>
+                    {% for item in marcas %}
+                    <li>
+                        <a href="{{ url('listadoproductosmarca',{marca: item.url}) }}">
+                            <img class="img-responsive wow fadeInDown" alt="{{ item.nombre }}" data-wow-duration="1000ms" data-wow-delay="300ms" src="{{ asset('uploads/marcas/'~item.imagen) }}">
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div><!--/.container-->
+    </section>
+{% endblock %}
+
+{% block javascriptspecific %}
+
+{% endblock %}

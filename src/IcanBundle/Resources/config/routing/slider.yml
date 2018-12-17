@@ -1,0 +1,39 @@
+slider:
+    path:  /slider
+    defaults: { _controller: IcanBundle:Slider:index }
+    
+listarSlider:
+    path:  /slider/listarSlider
+    defaults: { _controller: IcanBundle:Slider:listar, _format: json }
+
+eliminarSlider:
+    path:  /slider/eliminarSlider
+    defaults: { _controller: IcanBundle:Slider:eliminar, _format: json }
+    
+eliminarSliders:
+    path:  /slider/eliminarSliders
+    defaults: { _controller: IcanBundle:Slider:eliminarSliders, _format: json }
+ 
+salvarSlider:
+    path:  /slider/salvarSlider
+    defaults: { _controller: IcanBundle:Slider:salvar, _format: json }
+    
+salvarImagenSlider:
+    path:  /slider/salvarImagen
+    defaults: { _controller: IcanBundle:Slider:salvarImagen, _format: json }
+    
+eliminarImagenSlider:
+    path:  /slider/eliminarImagen
+    defaults: { _controller: IcanBundle:Slider:eliminarImagen, _format: json }
+
+cargarDatosSlider:
+    path:  /slider/cargarDatos
+    defaults: { _controller: IcanBundle:Slider:cargarDatos, _format: json }
+
+cambiarPosicionSlider:
+    path:  /slider/cambiarPosicion
+    defaults: { _controller: IcanBundle:Slider:cambiarPosicion, _format: json }
+
+recortarImagenSlider:
+  path:  /slider/recortarImagen
+  defaults: { _controller: IcanBundle:Slider:recortarImagen, _format: json }

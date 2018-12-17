@@ -1,0 +1,35 @@
+usuario:
+    path:  /usuarios
+    defaults: { _controller: IcanBundle:Usuario:index }
+  
+listUsers:
+    path:  /usuario/listarUsuario
+    defaults: { _controller: IcanBundle:Usuario:listar, _format: json}
+
+saveUser:
+    path:  /usuario/salvarUsuario
+    defaults: { _controller: IcanBundle:Usuario:salvar, _format: json}
+
+updateMisDatos:
+    path:  /usuario/actualizarMisDatos
+    defaults: { _controller: IcanBundle:Usuario:actualizarMisDatos, _format: json }
+
+deleteUser:
+    path:  /usuario/eliminarUsuario
+    defaults: { _controller: IcanBundle:Usuario:eliminar, _format: json }
+
+eliminarUsuarios:
+    path:  /usuario/eliminarUsuarios
+    defaults: { _controller: IcanBundle:Usuario:eliminarUsuarios, _format: json }    
+
+activateUser:
+    path:  /usuario/activarUsuario
+    defaults: { _controller: IcanBundle:Usuario:activarUsuario, _format: json }  
+
+cargarDatosUsuario:
+    path:  /usuario/cargarDatos
+    defaults: { _controller: IcanBundle:Usuario:cargarDatos, _format: json }   
+
+perfil:
+    path:  /perfil
+    defaults: { _controller: IcanBundle:Usuario:perfil }
