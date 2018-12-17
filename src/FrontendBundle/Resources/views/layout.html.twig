@@ -65,16 +65,18 @@
                             <a href="{{ url('servicios') }}">Servicios</a>
                         </li>
                         <li class="{% block menucontactoactiveclass %}{% endblock menucontactoactiveclass %}"><a href="{{ url('contacto') }}">Contacto</a></li>
-                        <li class="{% block menuregistroactiveclass %}{% endblock menuregistroactiveclass %}">
-                            <a href="{{ url('registro') }}">
-                                Registro de Usuario
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ url('login') }}">
-                                Login de Usuario
-                            </a>
-                        </li>
+                        {% if is_granted('is_anonymous()') %}
+                            <li class="{% block menuregistroactiveclass %}{% endblock menuregistroactiveclass %}">
+                                <a href="{{ url('registro') }}">
+                                    Registro de Usuario
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('login') }}">
+                                    Login de Usuario
+                                </a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div><!--/.container-->
