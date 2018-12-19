@@ -12,8 +12,7 @@ class ProductoRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function ListarOrdenados()
-    {
+    public function ListarOrdenados() {
         $consulta = $this->createQueryBuilder('p')
             ->where('p.estado = 1')
             ->orderBy('p.fechapublicacion', 'DESC');
@@ -27,8 +26,7 @@ class ProductoRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function ListarProductosDestacados($fecha_actual)
-    {
+    public function ListarProductosDestacados($fecha_actual) {
         $consulta = $this->createQueryBuilder('p')
             ->andWhere('p.estado = 1 AND p.destacado = 1');
 
@@ -46,8 +44,7 @@ class ProductoRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function ListarUltimosProductos($fecha_actual, $limit)
-    {
+    public function ListarUltimosProductos($fecha_actual, $limit) {
         $consulta = $this->createQueryBuilder('p')
             ->andWhere('p.estado = 1');
 
@@ -69,8 +66,7 @@ class ProductoRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function BuscarPorUrl($url)
-    {
+    public function BuscarPorUrl($url) {
         $criteria = array('url' => $url);
         return $this->findOneBy($criteria);
     }
@@ -81,8 +77,7 @@ class ProductoRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function ListarProductosDeCategoria($categoria_id)
-    {
+    public function ListarProductosDeCategoria($categoria_id) {
         $consulta = $this->createQueryBuilder('p')
             ->leftJoin('p.categoria', 'c')
             ->where('c.categoriaId = :categoria_id')
@@ -99,8 +94,7 @@ class ProductoRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function ListarProductosDeMarca($marca_id)
-    {
+    public function ListarProductosDeMarca($marca_id) {
         $consulta = $this->createQueryBuilder('p')
             ->leftJoin('p.marca', 'm')
             ->where('m.marcaId = :marca_id')
@@ -117,8 +111,7 @@ class ProductoRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function ListarProductosDeMarcaYCategoria($marca_id, $categoria_id)
-    {
+    public function ListarProductosDeMarcaYCategoria($marca_id, $categoria_id) {
         $consulta = $this->createQueryBuilder('p')
             ->leftJoin('p.marca', 'm')
             ->leftJoin('p.categoria', 'c')
@@ -138,8 +131,7 @@ class ProductoRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function ListarProductosDePromocion($promocion_id)
-    {
+    public function ListarProductosDePromocion($promocion_id) {
         $consulta = $this->createQueryBuilder('p')
             ->leftJoin('p.promocion', 'pr')
             ->where('pr.promocionId = :promocion_id')
@@ -156,8 +148,7 @@ class ProductoRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function ListarProductosDePorciento($porciento_id)
-    {
+    public function ListarProductosDePorciento($porciento_id) {
         $consulta = $this->createQueryBuilder('p')
             ->leftJoin('p.porciento', 'pr')
             ->where('pr.porcientoId = :porciento_id')
@@ -176,8 +167,7 @@ class ProductoRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function ListarProductosOrdenados($start, $limit)
-    {
+    public function ListarProductosOrdenados($start, $limit) {
         $consulta = $this->createQueryBuilder('p')->orderBy('p.fechapublicacion', 'DESC');
 
         $lista = $consulta->setFirstResult($start)
@@ -194,8 +184,7 @@ class ProductoRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function ListarProductos($start, $limit, $sSearch, $iSortCol_0, $sSortDir_0, $categoria_id = "", $marca_id = "")
-    {
+    public function ListarProductos($start, $limit, $sSearch, $iSortCol_0, $sSortDir_0, $categoria_id = "", $marca_id = "") {
         $consulta = $this->createQueryBuilder('p')
             ->leftJoin('p.categoria', 'c')
             ->leftJoin('p.marca', 'm');
@@ -241,8 +230,7 @@ class ProductoRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function TotalProductos($sSearch, $categoria_id = "", $marca_id = "")
-    {
+    public function TotalProductos($sSearch, $categoria_id = "", $marca_id = "") {
         $em = $this->getEntityManager();
         $consulta = 'SELECT COUNT(p.productoId) FROM IcanBundle\Entity\Producto p ';
         $join = ' LEFT JOIN p.categoria c LEFT JOIN p.marca m ';
@@ -306,8 +294,7 @@ class ProductoRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function ListarProductosParaRelacionados($start, $limit, $sSearch, $iSortCol_0, $sSortDir_0, $categoria_id = "", $marca_id = "", $productos_id = array())
-    {
+    public function ListarProductosParaRelacionados($start, $limit, $sSearch, $iSortCol_0, $sSortDir_0, $categoria_id = "", $marca_id = "", $productos_id = array()) {
         $consulta = $this->createQueryBuilder('p')
             ->leftJoin('p.categoria', 'c')
             ->leftJoin('p.marca', 'm');
@@ -360,8 +347,7 @@ class ProductoRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function TotalProductosParaRelacionados($sSearch, $categoria_id = "", $marca_id = "", $productos_id = array())
-    {
+    public function TotalProductosParaRelacionados($sSearch, $categoria_id = "", $marca_id = "", $productos_id = array()) {
         $em = $this->getEntityManager();
         $consulta = 'SELECT COUNT(p.productoId) FROM IcanBundle\Entity\Producto p ';
         $join = ' LEFT JOIN p.categoria c LEFT JOIN p.marca m ';
@@ -455,8 +441,7 @@ class ProductoRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function ListarProductosParaCotizacion($start, $limit, $sSearch, $iSortCol_0, $sSortDir_0, $categoria_id = "", $marca_id = "", $productos_id = array())
-    {
+    public function ListarProductosParaCotizacion($start, $limit, $sSearch, $iSortCol_0, $sSortDir_0, $categoria_id = "", $marca_id = "", $productos_id = array()) {
         $consulta = $this->createQueryBuilder('p')
             ->leftJoin('p.categoria', 'c')
             ->leftJoin('p.marca', 'm')
@@ -510,8 +495,7 @@ class ProductoRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function TotalProductosParaCotizacion($sSearch, $categoria_id = "", $marca_id = "", $productos_id = array())
-    {
+    public function TotalProductosParaCotizacion($sSearch, $categoria_id = "", $marca_id = "", $productos_id = array()) {
         $em = $this->getEntityManager();
         $consulta = 'SELECT COUNT(p.productoId) FROM IcanBundle\Entity\Producto p ';
         $join = ' LEFT JOIN p.categoria c LEFT JOIN p.marca m ';
@@ -605,8 +589,7 @@ class ProductoRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function ListarProductosParaPromocion($start, $limit, $sSearch, $iSortCol_0, $sSortDir_0, $categoria_id = "", $marca_id = "", $productos_id = array())
-    {
+    public function ListarProductosParaPromocion($start, $limit, $sSearch, $iSortCol_0, $sSortDir_0, $categoria_id = "", $marca_id = "", $productos_id = array()) {
         $consulta = $this->createQueryBuilder('p')
             ->leftJoin('p.categoria', 'c')
             ->leftJoin('p.marca', 'm')
@@ -661,8 +644,7 @@ class ProductoRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function TotalProductosParaPromocion($sSearch, $categoria_id = "", $marca_id = "", $productos_id = array())
-    {
+    public function TotalProductosParaPromocion($sSearch, $categoria_id = "", $marca_id = "", $productos_id = array()) {
         $em = $this->getEntityManager();
         $consulta = 'SELECT COUNT(p.productoId) FROM IcanBundle\Entity\Producto p ';
         $join = ' LEFT JOIN p.categoria c LEFT JOIN p.marca m ';
@@ -755,8 +737,7 @@ class ProductoRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function ListarProductosMasVistas()
-    {
+    public function ListarProductosMasVistas() {
         $consulta = $this->createQueryBuilder('p')
             ->where('p.views > 0')
             ->orderBy('p.views', 'DESC');
@@ -772,8 +753,7 @@ class ProductoRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function ListarProductosPortada($sort, $fecha_actual)
-    {
+    public function ListarProductosPortada($sort, $fecha_actual) {
         $consulta = $this->createQueryBuilder('p')
             ->where('p.estado = 1');
 
@@ -809,8 +789,7 @@ class ProductoRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function ListarProductosCategoriaPortada($categoria, $fecha_actual, $sort)
-    {
+    public function ListarProductosCategoriaPortada($categoria, $fecha_actual, $sort) {
         $consulta = $this->createQueryBuilder('p')
             ->where('p.estado = 1');
 
@@ -855,8 +834,7 @@ class ProductoRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function ListarProductosMarcaPortada($marca, $fecha_actual, $sort)
-    {
+    public function ListarProductosMarcaPortada($marca, $fecha_actual, $sort) {
         $consulta = $this->createQueryBuilder('p')
             ->where('p.estado = 1');
 
@@ -898,8 +876,7 @@ class ProductoRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function ListarBusquedaProductosPortada($sSearch, $fecha_actual, $sort)
-    {
+    public function ListarBusquedaProductosPortada($sSearch, $fecha_actual, $sort) {
         $consulta = $this->createQueryBuilder('p')
             ->where('p.estado = 1');
 
@@ -949,8 +926,7 @@ class ProductoRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function ListarProductosRangoPrecios($precio1, $precio2, $sort = "", $categoria_id = 0)
-    {
+    public function ListarProductosRangoPrecios($precio1, $precio2, $sort = "", $categoria_id = 0) {
         $consulta = $this->createQueryBuilder('p');
 
         if ($categoria_id > 0) {
@@ -994,8 +970,7 @@ class ProductoRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function ListarProductosPromocionPortada($promocion_id, $sort, $fecha_actual)
-    {
+    public function ListarProductosPromocionPortada($promocion_id, $sort, $fecha_actual) {
         $consulta = $this->createQueryBuilder('p')
             ->where('p.estado = 1');
 
@@ -1033,8 +1008,7 @@ class ProductoRepository extends EntityRepository
     }
 
 
-    function generarParamAleatorio()
-    {
+    function generarParamAleatorio() {
         $codigo = "";
         //Dos letras
         $codigo .= substr(str_shuffle("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"), 0, 10);
