@@ -12,8 +12,7 @@ class CategoriaRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function ListarOrdenadas()
-    {
+    public function ListarOrdenadas() {
         $consulta = $this->createQueryBuilder('c')
             ->where('c.estado = 1')
             ->orderBy('c.nombre', 'ASC');
@@ -27,8 +26,7 @@ class CategoriaRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function ListarPadres($estado = "")
-    {
+    public function ListarPadres($estado = "") {
         $consulta = $this->createQueryBuilder('c')
             ->where('c.categoriaPadre is null');
 
@@ -47,8 +45,7 @@ class CategoriaRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function ListarHijos($estado = "")
-    {
+    public function ListarHijos($estado = "") {
         $consulta = $this->createQueryBuilder('c')
             ->where('c.categoriaPadre is not null');
 
@@ -67,8 +64,7 @@ class CategoriaRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function ListarPadresActivos()
-    {
+    public function ListarPadresActivos() {
         $consulta = $this->createQueryBuilder('c')
             ->where('c.categoriaPadre is null AND c.estado = 1')
             ->orderBy('c.nombre', 'ASC');
@@ -82,8 +78,7 @@ class CategoriaRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function ListarHijosActivos()
-    {
+    public function ListarHijosActivos() {
         $consulta = $this->createQueryBuilder('c')
             ->where('c.categoriaPadre is not null AND c.estado = 1')
             ->orderBy('c.nombre', 'ASC');
@@ -99,8 +94,7 @@ class CategoriaRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function ListarCategoriasDelPadreOrdenadas($categoria_padre_id)
-    {
+    public function ListarCategoriasDelPadreOrdenadas($categoria_padre_id) {
 
         $consulta = $this->createQueryBuilder('c')
             ->leftJoin('c.categoriaPadre', 'c_p')
@@ -119,8 +113,7 @@ class CategoriaRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function BuscarPorUrl($url)
-    {
+    public function BuscarPorUrl($url) {
         $criteria = array('url' => $url);
         return $this->findOneBy($criteria);
     }
@@ -131,8 +124,7 @@ class CategoriaRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function BuscarPorImagen($imagen)
-    {
+    public function BuscarPorImagen($imagen) {
         $criteria = array('imagen' => $imagen);
         return $this->findOneBy($criteria);
     }
@@ -143,8 +135,7 @@ class CategoriaRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function BuscarPorNombre($nombre)
-    {
+    public function BuscarPorNombre($nombre) {
         $criteria = array('nombre' => $nombre);
         return $this->findOneBy($criteria);
     }
@@ -156,8 +147,7 @@ class CategoriaRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function ListarCategoriasDelPadre($categoria_padre_id, $estado = "")
-    {
+    public function ListarCategoriasDelPadre($categoria_padre_id, $estado = "") {
 
         $consulta = $this->createQueryBuilder('c')
             ->leftJoin('c.categoriaPadre', 'c_p')
@@ -182,8 +172,7 @@ class CategoriaRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function ListarCategorias($start, $limit, $sSearch, $iSortCol_0, $sSortDir_0)
-    {
+    public function ListarCategorias($start, $limit, $sSearch, $iSortCol_0, $sSortDir_0) {
         $consulta = $this->createQueryBuilder('c');
 
         if ($sSearch != "")
@@ -209,8 +198,7 @@ class CategoriaRepository extends EntityRepository
      *
      * @author Marcel
      */
-    public function TotalCategorias($sSearch)
-    {
+    public function TotalCategorias($sSearch) {
         $em = $this->getEntityManager();
         $consulta = 'SELECT COUNT(c.categoriaId) FROM IcanBundle\Entity\Categoria c ';
         $join = '';

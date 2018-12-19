@@ -65,7 +65,7 @@
                             <a href="{{ url('servicios') }}">Servicios</a>
                         </li>
                         <li class="{% block menucontactoactiveclass %}{% endblock menucontactoactiveclass %}"><a href="{{ url('contacto') }}">Contacto</a></li>
-                        {% if is_granted('is_anonymous()') %}
+                        {% if not app.user %}
                             <li class="{% block menuregistroactiveclass %}{% endblock menuregistroactiveclass %}">
                                 <a href="{{ url('registro') }}">
                                     Registro de Usuario
@@ -75,6 +75,14 @@
                                 <a href="{{ url('login') }}">
                                     Login de Usuario
                                 </a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <button class="btn btn-info" id="shopping-cart">
+                                    <span id="cont-shopping-cart" class="m-badge m-badge--danger"></span>
+                                    <i class="fa fa-shopping-cart"></i>
+                                    Carrito de Compras
+                                </button>
                             </li>
                         {% endif %}
                     </ul>
@@ -146,7 +154,11 @@
     <script src="{{ asset('bundles/frontend/js/jquery.isotope.min.js') }}"></script>
     <script src="{{ asset('bundles/frontend/js/main.js') }}"></script>
     <script src="{{ asset('bundles/frontend/js/wow.min.js') }}"></script>
-
+    <script src="{{ asset('bundles/frontend/js/my/shopping-cart.js') }}"></script>
+    <script>
+        var cont = JSON.parse(localStorage.getItem("shopping-cart") || 0);
+        $("#cont-shopping-cart").html(cont);
+    </script>
     {% block javascriptspecific %}
 
     {% endblock %}

@@ -1,0 +1,39 @@
+compra:
+    path:  /compra
+    defaults: { _controller: IcanBundle:Compra:index }
+    
+listarCompra:
+    path:  /compra/listarCompra
+    defaults: { _controller: IcanBundle:Compra:listar, _format: json }
+    
+listarCompraParaRelacionados:
+    path:  /compra/listarParaRelacionados
+    defaults: { _controller: IcanBundle:Compra:listarParaRelacionados, _format: json }
+
+eliminarCompra:
+    path:  /compra/eliminarCompra
+    defaults: { _controller: IcanBundle:Compra:eliminar, _format: json }
+    
+eliminarCompras:
+    path:  /compra/eliminarCompras
+    defaults: { _controller: IcanBundle:Compra:eliminarCompras, _format: json }
+ 
+salvarCompra:
+    path:  /compra/salvarCompra
+    defaults: { _controller: IcanBundle:Compra:salvar, _format: json }
+    
+salvarImagenCompra:
+    path:  /compra/salvarImagen
+    defaults: { _controller: IcanBundle:Compra:salvarImagen, _format: json }
+    
+eliminarImagenCompra:
+    path:  /compra/eliminarImagen
+    defaults: { _controller: IcanBundle:Compra:eliminarImagen, _format: json }
+       
+cargarDatosCompra:
+    path:  /compra/cargarDatos
+    defaults: { _controller: IcanBundle:Compra:cargarDatos, _format: json }
+
+eliminarRelacionadoCompra:
+  path:  /compra/eliminarRelacionado
+  defaults: { _controller: IcanBundle:Compra:eliminarRelacionado, _format: json }

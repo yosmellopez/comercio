@@ -43,11 +43,7 @@ class BaseController extends Controller
      */
     public function ListarRedesSociales() {
         $arreglo_resultado = array();
-
-
-        $entity = $this->getDoctrine()->getRepository('IcanBundle:Redsocial')
-            ->DevolverRedSocial();
-
+        $entity = $this->getDoctrine()->getRepository('IcanBundle:Redsocial')->DevolverRedSocial();
         $redsocial_id = "";
         $facebook = "";
         $activarfacebook = false;

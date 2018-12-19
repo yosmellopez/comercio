@@ -63,6 +63,9 @@ _promocion:
 _descuento:
   resource: "@IcanBundle/Resources/config/routing/descuento.yml"
 
+_compra:
+  resource: "@IcanBundle/Resources/config/routing/compra.yml"
+
 _webpayconfig:
   resource: "@IcanBundle/Resources/config/routing/webpayconfig.yml"
 

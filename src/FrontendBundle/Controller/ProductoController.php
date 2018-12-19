@@ -10,8 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 class ProductoController extends BaseController
 {
 
-    public function indexAction(Request $request)
-    {
+    public function indexAction(Request $request) {
         //Metaetiquetas para la pagina principal
         $url = 'listadoproductos';
         $seo_on_page = $this->getDoctrine()->getRepository('IcanBundle:SeoOnPage')->findOneBy(array('url' => $url));
@@ -35,8 +34,7 @@ class ProductoController extends BaseController
         ));
     }
 
-    public function productoscategoriaAction(Request $request)
-    {
+    public function productoscategoriaAction(Request $request) {
         $categoria = $request->get('categoria');
         $page = $request->get('page');
 
@@ -68,8 +66,7 @@ class ProductoController extends BaseController
         }
     }
 
-    public function productosmarcaAction(Request $request)
-    {
+    public function productosmarcaAction(Request $request) {
         $marca = $request->get('marca');
         $page = $request->get('page');
 
@@ -100,8 +97,7 @@ class ProductoController extends BaseController
         }
     }
 
-    public function detalleAction(Request $request)
-    {
+    public function detalleAction(Request $request) {
         $ruta = $this->ObtenerURL();
 
         $url = $request->get('url');
@@ -133,10 +129,9 @@ class ProductoController extends BaseController
      *
      * @author Marcel
      */
-    public function DetalleProducto($url)
-    {
+    public function DetalleProducto($url) {
         $arreglo_resultado = array();
-        $value = $this->getDoctrine()->getRepository('Equipo')
+        $value = $this->getDoctrine()->getRepository('IcanBundle:Producto')
             ->BuscarPorUrl($url);
         if ($value != null) {
             $producto_id = $value->getProductoId();
@@ -147,8 +142,8 @@ class ProductoController extends BaseController
             $arreglo_resultado['descripcion'] = $value->getDescripcion();
             $arreglo_resultado['tags'] = $value->getTags();
             $arreglo_resultado['stock'] = $value->getStock();
-            $arreglo_resultado['mostrarPrecio'] = ($value->getMostrarPrecio() == 1) ? true : false;
-            $arreglo_resultado['precioOferta'] = number_format($value->getPrecioOferta(), 0, ',', '.');
+            $arreglo_resultado['mostrarPrecio'] = true;
+            $arreglo_resultado['precioOferta'] = number_format(100, 0, ',', '.');
             $arreglo_resultado['precio'] = number_format($value->getPrecio(), 0, ',', '.');
             $arreglo_resultado['imagen'] = $value->getImagen();
             $arreglo_resultado['url'] = $value->getUrl();
@@ -156,7 +151,7 @@ class ProductoController extends BaseController
             $arreglo_resultado['marca'] = $value->getMarca();
 
             //Imagenes del producto
-            $productoimagenes = $this->getDoctrine()->getRepository('NoticiaImagen')
+            $productoimagenes = $this->getDoctrine()->getRepository('IcanBundle:ProductoImagen')
                 ->ListarImagenes($producto_id);
             $imagenes = array();
             $cont_imagenes = 0;
@@ -172,7 +167,7 @@ class ProductoController extends BaseController
             $cont_relacionados = 0;
 
             $fecha_actual = date('Y-m-d H:i', strtotime("+1 day"));
-            $productos = $this->getDoctrine()->getRepository('NoticiaRelacion')
+            $productos = $this->getDoctrine()->getRepository('IcanBundle:ProductoRelacion')
                 ->ListarRelacionadosPortada($producto_id, $fecha_actual);
             foreach ($productos as $producto) {
                 if ($producto->getProductoRelacion()->getProductoId() != $producto_id) {
@@ -181,9 +176,9 @@ class ProductoController extends BaseController
                     $relacionados[$cont_relacionados]['nombre'] = $producto->getProductoRelacion()->getNombre();
                     $relacionados[$cont_relacionados]['descripcion'] = $producto->getProductoRelacion()->getDescripcion();
                     $relacionados[$cont_relacionados]['stock'] = $producto->getProductoRelacion()->getStock();
-                    $relacionados[$cont_relacionados]['mostrarPrecio'] = ($producto->getProductoRelacion()->getMostrarPrecio() == 1) ? true : false;
+                    $relacionados[$cont_relacionados]['mostrarPrecio'] = true;
                     $relacionados[$cont_relacionados]['precio'] = number_format($producto->getProductoRelacion()->getPrecio(), 0, ',', '.');
-                    $relacionados[$cont_relacionados]['precioOferta'] = number_format($producto->getProductoRelacion()->getPrecioOferta(), 0, ',', '.');
+                    $relacionados[$cont_relacionados]['precioOferta'] = number_format(200, 0, ',', '.');
                     $relacionados[$cont_relacionados]['imagen'] = $producto->getProductoRelacion()->getImagen();
                     $relacionados[$cont_relacionados]['url'] = $producto->getProductoRelacion()->getUrl();
                     $relacionados[$cont_relacionados]['categoria'] = $producto->getProductoRelacion()->getCategoria();
@@ -222,14 +217,13 @@ class ProductoController extends BaseController
      * @return array $productos
      * @author Marcel
      */
-    public function ListarProductosMarca($marca, $page)
-    {
+    public function ListarProductosMarca($marca, $page) {
         $arreglo_resultado = array();
         $cont = 0;
 
         $fecha_actual = date('Y-m-d H:i', strtotime("+1 day"));
 
-        $lista = $this->getDoctrine()->getRepository('Equipo')
+        $lista = $this->getDoctrine()->getRepository('IcanBundle:Producto')
             ->ListarProductosMarcaPortada($marca, $fecha_actual);
 
         foreach ($lista as $value) {
@@ -264,14 +258,13 @@ class ProductoController extends BaseController
      * @return array $productos
      * @author Marcel
      */
-    public function ListarProductosCategoria($categoria, $page)
-    {
+    public function ListarProductosCategoria($categoria, $page) {
         $arreglo_resultado = array();
         $cont = 0;
 
         $fecha_actual = date('Y-m-d H:i', strtotime("+1 day"));
 
-        $lista = $this->getDoctrine()->getRepository('Equipo')
+        $lista = $this->getDoctrine()->getRepository('IcanBundle:Producto')
             ->ListarProductosCategoriaPortada($categoria, $fecha_actual);
 
         foreach ($lista as $value) {
@@ -308,13 +301,12 @@ class ProductoController extends BaseController
      * @author Marcel
      */
     public
-    function ListarProductos($page)
-    {
+    function ListarProductos($page) {
         $arreglo_resultado = array();
         $cont = 0;
 
         $fecha_actual = date('Y-m-d H:i', strtotime("+1 day"));
-        $lista = $this->getDoctrine()->getRepository('Equipo')
+        $lista = $this->getDoctrine()->getRepository('IcanBundle:Producto')
             ->ListarProductosPortada($fecha_actual);
 
         foreach ($lista as $value) {
@@ -325,8 +317,8 @@ class ProductoController extends BaseController
             $arreglo_resultado[$cont]['nombre'] = $value->getNombre();
             $arreglo_resultado[$cont]['descripcion'] = $value->getDescripcion();
             $arreglo_resultado[$cont]['stock'] = $value->getStock();
-            $arreglo_resultado[$cont]['mostrarPrecio'] = ($value->getMostrarPrecio() == 1) ? true : false;
-            $arreglo_resultado[$cont]['precioOferta'] = number_format($value->getPrecioOferta(), 0, ',', '.');
+            $arreglo_resultado[$cont]['mostrarPrecio'] = true;
+            $arreglo_resultado[$cont]['precioOferta'] = 200;
             $arreglo_resultado[$cont]['precio'] = number_format($value->getPrecio(), 0, ',', '.');
             $arreglo_resultado[$cont]['imagen'] = $value->getImagen();
             $arreglo_resultado[$cont]['url'] = $value->getUrl();
