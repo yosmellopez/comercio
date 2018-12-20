@@ -76,13 +76,20 @@
                                     Login de Usuario
                                 </a>
                             </li>
-                        {% else %}
                             <li>
                                 <button class="btn btn-info" id="shopping-cart">
                                     <span id="cont-shopping-cart" class="m-badge m-badge--danger"></span>
                                     <i class="fa fa-shopping-cart"></i>
-                                    Carrito de Compras
+                                    Comprar
                                 </button>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="{{ url('shopping_cart') }}#" class="btn btn-info" id="shopping-cart-user">
+                                    <span id="cont-shopping-cart-user" class="m-badge m-badge--danger"></span>
+                                    <i class="fa fa-shopping-cart"></i>
+                                    Comprar
+                                </a>
                             </li>
                         {% endif %}
                     </ul>
@@ -140,6 +147,8 @@
         </div>
     </footer>
 
+    {% include 'FrontendBundle:Block:modals.html.twig' %}
+
 {% endblock %}
 
 {% block javascripts %}
@@ -156,10 +165,18 @@
     <script src="{{ asset('bundles/frontend/js/wow.min.js') }}"></script>
     <script src="{{ asset('bundles/frontend/js/my/shopping-cart.js') }}"></script>
     <script src="{{ asset('bundles/ican/assets/vendors/base/vendors.bundle.js') }}"></script>
-    <script>
-        var cont = JSON.parse(localStorage.getItem("shopping-cart") || 0);
-        $("#cont-shopping-cart").html(cont);
-    </script>
+    {% if not app.user %}
+        <script>
+            var cont = JSON.parse(localStorage.getItem("shopping-cart") || 0);
+            $("#cont-shopping-cart").html(cont);
+        </script>
+    {% else %}
+        <script>
+            var cont = JSON.parse(localStorage.getItem("shopping-cart") || 0);
+            $("#cont-shopping-cart-user").html(cont);
+        </script>
+    {% endif %}
+
     {% block javascriptspecific %}
 
     {% endblock %}

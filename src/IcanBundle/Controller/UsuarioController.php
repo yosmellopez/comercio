@@ -15,21 +15,20 @@ class UsuarioController extends BaseController
      * loginAction Acción para mostrar el formulario de login
      *
      */
-    public function loginAction()
-    {
-        return $this->render('IcanBundle:Usuario:login.html.twig', array());
+    public function loginAction(Request $request) {
+        $target_path = $request->get("backTo");
+        return $this->render('IcanBundle:Usuario:login.html.twig', array("target_path" => $target_path));
     }
 
     /**
      * autenticarAction Acción para el chequear el login
      *
      */
-    public function autenticarAction(Request $request)
-    {
+    public function autenticarAction(Request $request) {
         $email = $request->get('email');
         $pass = $request->get('passwordcodificada');
         $remember_me = $request->get('remember');
-        $target_path = 'home';
+        $target_path = $request->get("backTo");
         try {
             $resultado = $this->AutenticarLogin($email, $pass);
             if ($resultado['success']) {
@@ -42,9 +41,8 @@ class UsuarioController extends BaseController
                     $token = new UsernamePasswordToken($entity, null, 'secured_area', $entity->getRoles());
                     $this->get('security.token_storage')->setToken($token);
                 }
-
-                //return $this->redirect($this->generateUrl($target_path));
-
+                if (is_null($target_path) && empty($target_path))
+                    $target_path = "home";
                 $resultadoJson['success'] = $resultado['success'];
                 $resultadoJson['url'] = $this->generateUrl($target_path);
                 return new Response(json_encode($resultadoJson));
@@ -56,6 +54,7 @@ class UsuarioController extends BaseController
         } catch (\Exception $e) {
             $resultadoJson['success'] = false;
             $resultadoJson['error'] = $e->getMessage();
+            $resultadoJson['target'] = $target_path;
             return new Response(json_encode($resultadoJson));
         }
     }
@@ -64,8 +63,7 @@ class UsuarioController extends BaseController
      * denegadoAction Perfil de usuario
      *
      */
-    public function denegadoAction()
-    {
+    public function denegadoAction() {
         return $this->render('IcanBundle:Usuario:denegado.html.twig', array());
     }
 
@@ -73,8 +71,7 @@ class UsuarioController extends BaseController
      * perfilAction Perfil de usuario
      *
      */
-    public function perfilAction()
-    {
+    public function perfilAction() {
         $usuario = $this->getUser();
 
         return $this->render('IcanBundle:Usuario:perfil.html.twig', array(
@@ -86,8 +83,7 @@ class UsuarioController extends BaseController
      * indexAction Perfil de usuario
      *
      */
-    public function indexAction()
-    {
+    public function indexAction() {
 
         $perfiles = $this->getDoctrine()->getRepository('IcanBundle:Rol')
             ->ListarOrdenados();
@@ -102,8 +98,7 @@ class UsuarioController extends BaseController
      * listarAction Acción que lista los usuarios
      *
      */
-    public function listarAction(Request $request)
-    {
+    public function listarAction(Request $request) {
         // search filter by keywords
         $query = !empty($request->get('query')) ? $request->get('query') : array();
         $sSearch = isset($query['generalSearch']) && is_string($query['generalSearch']) ? $query['generalSearch'] : '';
@@ -160,8 +155,7 @@ class UsuarioController extends BaseController
      * salvarAction Acción que inserta un usuario en la BD
      *
      */
-    public function salvarAction(Request $request)
-    {
+    public function salvarAction(Request $request) {
         $usuario_id = $request->get('usuario_id');
 
         $rol_id = $request->get('rol');
@@ -204,8 +198,7 @@ class UsuarioController extends BaseController
      * eliminarAction Acción que elimina un rol en la BD
      *
      */
-    public function eliminarAction(Request $request)
-    {
+    public function eliminarAction(Request $request) {
         $usuario_id = $request->get('usuario_id');
 
         $resultado = $this->EliminarUsuario($usuario_id);
@@ -225,8 +218,7 @@ class UsuarioController extends BaseController
      * eliminarUsuariosAction Acción que elimina varios usuarios en la BD
      *
      */
-    public function eliminarUsuariosAction(Request $request)
-    {
+    public function eliminarUsuariosAction(Request $request) {
         $ids = $request->get('ids');
 
         $resultado = $this->EliminarUsuarios($ids);
@@ -246,8 +238,7 @@ class UsuarioController extends BaseController
      * olvidoContrasennaAction Acción para recuperar la contraseña de un usuario
      *
      */
-    public function olvidoContrasennaAction(Request $request)
-    {
+    public function olvidoContrasennaAction(Request $request) {
         $email = $request->get('email');
         try {
             $resultado = $this->RecuperarContrasenna($email);
@@ -272,8 +263,7 @@ class UsuarioController extends BaseController
      * activarUsuarioAction Acción que activa o desactiva un usuario
      *
      */
-    public function activarUsuarioAction(Request $request)
-    {
+    public function activarUsuarioAction(Request $request) {
         $usuario_id = $request->get('usuario_id');
 
         $resultado = $this->ActivarUsuario($usuario_id);
@@ -292,8 +282,7 @@ class UsuarioController extends BaseController
      * cargarDatosAction Acción que carga los datos del usuario en la BD
      *
      */
-    public function cargarDatosAction(Request $request)
-    {
+    public function cargarDatosAction(Request $request) {
         $usuario_id = $request->get('usuario_id');
 
         $resultado = $this->CargarDatosUsuario($usuario_id);
@@ -313,8 +302,7 @@ class UsuarioController extends BaseController
      * actualizarMisDatosAction Acción que actualiza el perfil del usuario en la BD
      *
      */
-    public function actualizarMisDatosAction(Request $request)
-    {
+    public function actualizarMisDatosAction(Request $request) {
 
         $usuario_id = $request->get('usuario_id');
         $contrasenna = $request->get('password');
@@ -343,8 +331,7 @@ class UsuarioController extends BaseController
      * @param string $pass Pass
      * @author Marcel
      */
-    public function AutenticarLogin($email, $pass)
-    {
+    public function AutenticarLogin($email, $pass) {
         $resultado = array();
 
         $usuario = $this->getDoctrine()->getRepository('IcanBundle:Usuario')
@@ -375,8 +362,7 @@ class UsuarioController extends BaseController
      *
      * @author Marcel
      */
-    public function ActualizarMisDatos($usuario_id, $contrasenna, $nombre, $apellidos, $email)
-    {
+    public function ActualizarMisDatos($usuario_id, $contrasenna, $nombre, $apellidos, $email) {
         $em = $this->getDoctrine()->getManager();
 
         $resultado = array();
@@ -417,8 +403,7 @@ class UsuarioController extends BaseController
      *
      * @author Marcel
      */
-    public function CargarDatosUsuario($usuario_id)
-    {
+    public function CargarDatosUsuario($usuario_id) {
         $resultado = array();
         $arreglo_resultado = array();
 
@@ -462,8 +447,7 @@ class UsuarioController extends BaseController
      * @param int $usuario_id Id del usuario
      * @author Marcel
      */
-    public function ActivarUsuario($usuario_id)
-    {
+    public function ActivarUsuario($usuario_id) {
         $resultado = array();
         $em = $this->getDoctrine()->getManager();
 
@@ -491,8 +475,7 @@ class UsuarioController extends BaseController
      * @param string $email Email del usuario
      * @author Marcel
      */
-    public function RecuperarContrasenna($email)
-    {
+    public function RecuperarContrasenna($email) {
         $resultado = array();
         $em = $this->getDoctrine()->getManager();
 
@@ -549,8 +532,7 @@ class UsuarioController extends BaseController
      * @param int $usuario_id Id del usuario
      * @author Marcel
      */
-    public function EliminarUsuario($usuario_id)
-    {
+    public function EliminarUsuario($usuario_id) {
         $resultado = array();
         $em = $this->getDoctrine()->getManager();
 
@@ -599,8 +581,7 @@ class UsuarioController extends BaseController
      * @param array $$ids Ids
      * @author Marcel
      */
-    public function EliminarUsuarios($ids)
-    {
+    public function EliminarUsuarios($ids) {
         $resultado = array();
         $em = $this->getDoctrine()->getManager();
 
@@ -659,8 +640,7 @@ class UsuarioController extends BaseController
      * @author Marcel
      */
     public function ActualizarUsuario($usuario_id, $rol_id, $habilitado, $contrasenna,
-                                      $nombre, $apellidos, $email, $rut, $calle, $numero, $telefono)
-    {
+                                      $nombre, $apellidos, $email, $rut, $calle, $numero, $telefono) {
         $em = $this->getDoctrine()->getManager();
 
         $resultado = array();
@@ -731,8 +711,7 @@ class UsuarioController extends BaseController
      * @author Marcel
      */
     public function SalvarUsuario($rol_id, $habilitado, $contrasenna, $nombre, $apellidos,
-                                  $email, $rut, $calle, $numero, $telefono)
-    {
+                                  $email, $rut, $calle, $numero, $telefono) {
         $resultado = array();
         $em = $this->getDoctrine()->getManager();
 
@@ -793,8 +772,7 @@ class UsuarioController extends BaseController
      *
      * @author Marcel
      */
-    public function ListarUsuarios($start, $limit, $sSearch, $iSortCol_0, $sSortDir_0)
-    {
+    public function ListarUsuarios($start, $limit, $sSearch, $iSortCol_0, $sSortDir_0) {
         $arreglo_resultado = array();
         $cont = 0;
 
@@ -827,8 +805,7 @@ class UsuarioController extends BaseController
      * @param string $sSearch Para buscar
      * @author Marcel
      */
-    public function TotalUsuarios($sSearch)
-    {
+    public function TotalUsuarios($sSearch) {
         $total = $this->getDoctrine()->getRepository('IcanBundle:Usuario')
             ->TotalUsuarios($sSearch);
 
@@ -840,8 +817,7 @@ class UsuarioController extends BaseController
      * @param string $nick Usuario
      * @author Marcel
      */
-    public function ListarAcciones($id)
-    {
+    public function ListarAcciones($id) {
         $acciones = "";
 
         $acciones .= '<a href="javascript:;" class="edit m-portlet__nav-link btn m-btn m-btn--hover-success m-btn--icon m-btn--icon-only m-btn--pill" title="Editar registro" data-id="' . $id . '"> <i class="la la-edit"></i> </a> ';

@@ -236,6 +236,31 @@ class DefaultController extends BaseController
         );
     }
 
+    public function showCartAction() {
+        $url = 'homefrontend';
+        $seo_on_page = $this->getDoctrine()->getRepository('IcanBundle:SeoOnPage')->findOneBy(array('url' => $url));
+
+        //Sliders
+        $sliders = $this->ListarSliders();
+        //Redes Sociales
+        $redsocial = $this->ListarRedesSociales();
+        //Ultimos Productos
+        $ultimos = $this->ListarUltimosProductos();
+        //Categorias
+        $categorias = $this->ListarCategorias();
+        //Marcas
+        $marcas = $this->ListarMarcasRandom();
+        return $this->render("FrontendBundle:Shopping:shoppingcart.html.twig", array(
+            'seo_on_page' => $seo_on_page,
+            'categorias' => $categorias,
+            'categoria_activa' => 0,
+            'marcas' => $marcas,
+            'redsocial' => $redsocial,
+            'sliders' => $sliders,
+            'ultimos' => $ultimos
+        ));
+    }
+
     public function ListarPaginaServicios() {
         $arreglo_resultado = array();
 

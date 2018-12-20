@@ -42,7 +42,7 @@
 
                 <div class="col-xs-12 col-sm-4 col-md-3" style="margin-bottom: 10px; padding-right: 10px; padding-left: 10px;">
                     <div class="recent-work-wrap">
-                        <img src="{{ asset('uploads/productos/portada-'~item.imagen) }}" class="img-responsive" alt="{{ item.nombre }}"/>
+                        <img id="item-imagen-{{ item.producto_id }}" src="{{ asset('uploads/productos/portada-'~item.imagen) }}" class="img-responsive" alt="{{ item.nombre }}"/>
                         <div class="overlay">
                             <div class="recent-work-inner">
                                 <a class="preview" href="{{ url('productodetalle',{url: item.url}) }}">

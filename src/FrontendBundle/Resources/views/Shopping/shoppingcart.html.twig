@@ -1,0 +1,31 @@
+{% extends 'FrontendBundle::layout.html.twig' %}
+
+{% block content %}
+    <section id="about-us">
+        <div class="container" id="my-container">
+            <div class="center wow fadeInDown">
+                <h2 class="spacer1">Carrito de Compras</h2>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6" style="min-height: 1px;">
+                    <table>
+                        <thead>
+
+                        </thead>
+                        <tbody id="target"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block javascriptspecific %}
+    <script src="{{ asset('bundles/frontend/js/my/shopping-cart.js') }}"></script>
+    <script>
+        jQuery(document).ready(function () {
+            ShoppingCart.init();
+        });
+    </script>
+{% endblock %}
